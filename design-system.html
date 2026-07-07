@@ -1,0 +1,3447 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Design System — MonkieStudio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&display=swap" rel="stylesheet">
+  <style>
+    /* ===== DESIGN TOKENS ===== */
+    :root {
+      /* Light Mode */
+      --color-bg: #FAFAFA;
+      --color-surface: #D8D5DB;
+      --color-card: #FFFFFF;
+      --color-primary: #2D3142;
+      --color-secondary: #ADACB5;
+      --color-text: #2D3142;
+      --color-text-muted: #6B6A75;
+      --color-border: #C8C6CE;
+      --color-success: #2E7D32;
+      --color-error: #C62828;
+      --color-warning: #F57F17;
+      --color-star: #F5B342;
+      --color-sidebar-bg: #2D3142;
+      --color-sidebar-text: #E8E5EB;
+      --color-sidebar-hover: #383B50;
+      --color-sidebar-active: #4A4D5E;
+
+      /* Typography */
+      --font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --fs-display: clamp(2.5rem, 5vw, 3.5rem);
+      --fs-h1: clamp(2rem, 4vw, 2.75rem);
+      --fs-h2: clamp(1.625rem, 3vw, 2.25rem);
+      --fs-h3: clamp(1.375rem, 2.5vw, 1.75rem);
+      --fs-h4: clamp(1.125rem, 1.5vw, 1.375rem);
+      --fs-body: 1rem;
+      --fs-body-sm: 0.875rem;
+      --fs-btn: 0.9375rem;
+      --fs-caption: 0.75rem;
+      --fs-overline: 0.6875rem;
+
+      /* Spacing */
+      --space-2: 2px;
+      --space-4: 4px;
+      --space-8: 8px;
+      --space-12: 12px;
+      --space-16: 16px;
+      --space-20: 20px;
+      --space-24: 24px;
+      --space-32: 32px;
+      --space-40: 40px;
+      --space-48: 48px;
+      --space-56: 56px;
+      --space-64: 64px;
+      --space-80: 80px;
+      --space-96: 96px;
+      --space-120: 120px;
+      --space-160: 160px;
+
+      /* Border Radius */
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --radius-xl: 16px;
+      --radius-full: 9999px;
+
+      /* Shadows */
+      --shadow-sm: 0 1px 2px rgba(45,49,66,0.05);
+      --shadow-md: 0 4px 8px rgba(45,49,66,0.08);
+      --shadow-lg: 0 10px 20px rgba(45,49,66,0.10);
+      --shadow-xl: 0 20px 30px rgba(45,49,66,0.12);
+
+      --sidebar-width: 280px;
+    }
+
+    [data-theme="dark"] {
+      --color-bg: #1A1A2E;
+      --color-surface: #2D3142;
+      --color-card: #383B50;
+      --color-primary: #E8E5EB;
+      --color-secondary: #9A98A3;
+      --color-text: #E8E5EB;
+      --color-text-muted: #ADACB5;
+      --color-border: #4A4D5E;
+      --color-success: #66BB6A;
+      --color-error: #EF5350;
+      --color-warning: #FFB74D;
+      --color-star: #F5B342;
+      --color-sidebar-bg: #0D0D1A;
+      --color-sidebar-text: #E8E5EB;
+      --color-sidebar-hover: #2D3142;
+      --color-sidebar-active: #383B50;
+
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.3);
+      --shadow-md: 0 4px 8px rgba(0,0,0,0.4);
+      --shadow-lg: 0 10px 20px rgba(0,0,0,0.5);
+      --shadow-xl: 0 20px 30px rgba(0,0,0,0.6);
+    }
+
+    /* ===== RESET ===== */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 24px;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.6;
+      transition: background 0.3s ease, color 0.3s ease;
+      display: flex;
+    }
+
+    /* ===== SIDEBAR ===== */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: var(--sidebar-width);
+      height: 100vh;
+      background: var(--color-sidebar-bg);
+      color: var(--color-sidebar-text);
+      z-index: 1000;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s ease;
+    }
+
+    .sidebar-header {
+      padding: var(--space-24) var(--space-20);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .sidebar-header .logo {
+      display: flex;
+      align-items: center;
+      gap: var(--space-8);
+      font-weight: 700;
+      font-size: var(--fs-h4);
+      color: var(--color-sidebar-text);
+      text-decoration: none;
+    }
+
+    .sidebar-header .logo-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--color-star);
+    }
+
+    .sidebar-header .version {
+      font-size: var(--fs-caption);
+      color: var(--color-secondary);
+      margin-top: var(--space-4);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .sidebar-nav {
+      padding: var(--space-16) 0;
+      flex: 1;
+    }
+
+    .sidebar-nav a {
+      display: block;
+      padding: var(--space-10, 10px) var(--space-20);
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-size: var(--fs-body-sm);
+      font-weight: 500;
+      transition: all 0.2s ease;
+      border-left: 3px solid transparent;
+    }
+
+    .sidebar-nav a:hover {
+      background: var(--color-sidebar-hover);
+      color: #fff;
+    }
+
+    .sidebar-nav a.active {
+      background: var(--color-sidebar-active);
+      color: #fff;
+      border-left-color: var(--color-star);
+    }
+
+    .sidebar-nav .nav-label {
+      padding: var(--space-16) var(--space-20) var(--space-4);
+      font-size: var(--fs-caption);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.4);
+      font-weight: 600;
+    }
+
+    /* ===== MAIN ===== */
+    .main {
+      margin-left: var(--sidebar-width);
+      flex: 1;
+      min-height: 100vh;
+    }
+
+    .main-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--color-bg);
+      border-bottom: 1px solid var(--color-border);
+      padding: var(--space-16) var(--space-32);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.3s ease;
+    }
+
+    .main-header h1 {
+      font-size: var(--fs-h3);
+      font-weight: 700;
+      color: var(--color-primary);
+    }
+
+    .main-header .header-actions {
+      display: flex;
+      align-items: center;
+      gap: var(--space-16);
+    }
+
+    .main-header .header-actions span {
+      font-size: var(--fs-body-sm);
+      color: var(--color-text-muted);
+    }
+
+    .main-content {
+      padding: var(--space-48) var(--space-32) var(--space-96);
+      max-width: 1100px;
+    }
+
+    /* ===== THEME TOGGLE ===== */
+    .theme-toggle {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--color-border);
+      background: var(--color-card);
+      color: var(--color-text);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      transition: all 0.3s ease;
+      min-width: 44px;
+      min-height: 44px;
+    }
+
+    .theme-toggle:hover {
+      border-color: var(--color-primary);
+      transform: rotate(15deg);
+    }
+
+    .theme-toggle:focus-visible {
+      outline: 2px solid var(--color-primary);
+      outline-offset: 2px;
+    }
+
+    /* ===== SECTIONS ===== */
+    .ds-section {
+      margin-bottom: var(--space-64);
+    }
+
+    .ds-section-header {
+      margin-bottom: var(--space-32);
+      padding-bottom: var(--space-16);
+      border-bottom: 2px solid var(--color-border);
+    }
+
+    .ds-section-header .overline {
+      font-size: var(--fs-overline);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-4);
+    }
+
+    .ds-section-header h2 {
+      font-size: var(--fs-h2);
+      font-weight: 700;
+      color: var(--color-primary);
+    }
+
+    .ds-section-header p {
+      color: var(--color-text-muted);
+      margin-top: var(--space-8);
+      font-size: var(--fs-body);
+    }
+
+    .ds-subsection {
+      margin-bottom: var(--space-40);
+    }
+
+    .ds-subsection h3 {
+      font-size: var(--fs-h4);
+      font-weight: 600;
+      color: var(--color-primary);
+      margin-bottom: var(--space-16);
+    }
+
+    .ds-subsection p {
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-16);
+      font-size: var(--fs-body-sm);
+    }
+
+    .ds-desc {
+      font-size: var(--fs-body-sm);
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-16);
+    }
+
+    /* ===== SWATCH GRID ===== */
+    .swatch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: var(--space-16);
+    }
+
+    .swatch-card {
+      background: var(--color-card);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--color-border);
+      transition: box-shadow 0.2s ease;
+    }
+
+    .swatch-card:hover {
+      box-shadow: var(--shadow-md);
+    }
+
+    .swatch-preview {
+      height: 80px;
+      display: flex;
+      align-items: flex-end;
+      padding: var(--space-8) var(--space-12);
+    }
+
+    .swatch-preview .badge {
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: var(--radius-full);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .swatch-preview .badge.light {
+      background: rgba(255,255,255,0.85);
+      color: #333;
+    }
+
+    .swatch-preview .badge.dark {
+      background: rgba(0,0,0,0.6);
+      color: #fff;
+    }
+
+    .swatch-info {
+      padding: var(--space-12);
+    }
+
+    .swatch-info .token-name {
+      font-size: var(--fs-body-sm);
+      font-weight: 600;
+      color: var(--color-text);
+      word-break: break-all;
+    }
+
+    .swatch-info .token-hex {
+      font-size: var(--fs-caption);
+      color: var(--color-text-muted);
+      margin-top: var(--space-2);
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .swatch-info .token-hex button {
+      background: none;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      padding: 2px 8px;
+      font-size: 10px;
+      cursor: pointer;
+      color: var(--color-text-muted);
+      transition: all 0.2s;
+    }
+
+    .swatch-info .token-hex button:hover {
+      border-color: var(--color-primary);
+      color: var(--color-primary);
+    }
+
+    /* ===== TYPOGRAPHY ===== */
+    .typo-grid {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-8);
+    }
+
+    .typo-item {
+      display: flex;
+      flex-direction: column;
+      padding: var(--space-16);
+      background: var(--color-card);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--color-border);
+    }
+
+    .typo-item .preview {
+      color: var(--color-text);
+    }
+
+    .typo-item .preview.display { font-size: var(--fs-display); font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; }
+    .typo-item .preview.h1 { font-size: var(--fs-h1); font-weight: 700; letter-spacing: -0.015em; line-height: 1.15; }
+    .typo-item .preview.h2 { font-size: var(--fs-h2); font-weight: 600; letter-spacing: -0.01em; line-height: 1.2; }
+    .typo-item .preview.h3 { font-size: var(--fs-h3); font-weight: 600; letter-spacing: 0; line-height: 1.25; }
+    .typo-item .preview.h4 { font-size: var(--fs-h4); font-weight: 600; letter-spacing: 0; line-height: 1.3; }
+    .typo-item .preview.body { font-size: var(--fs-body); font-weight: 400; line-height: 1.6; }
+    .typo-item .preview.body-sm { font-size: var(--fs-body-sm); font-weight: 400; line-height: 1.5; }
+    .typo-item .preview.btn { font-size: var(--fs-btn); font-weight: 600; letter-spacing: 0.01em; line-height: 1; }
+    .typo-item .preview.overline { font-size: var(--fs-overline); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+
+    .typo-item .meta {
+      display: flex;
+      gap: var(--space-16);
+      margin-top: var(--space-8);
+      font-size: var(--fs-caption);
+      color: var(--color-text-muted);
+      font-family: 'SF Mono', 'Fira Code', monospace;
+    }
+
+    .typo-item .meta span {
+      background: var(--color-surface);
+      padding: 2px 8px;
+      border-radius: var(--radius-sm);
+    }
+
+    /* ===== SPACING ===== */
+    .spacing-grid {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+
+    .spacing-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-16);
+    }
+
+    .spacing-item .label {
+      min-width: 100px;
+      font-size: var(--fs-body-sm);
+      font-weight: 600;
+      color: var(--color-text);
+    }
+
+    .spacing-item .bar {
+      height: 20px;
+      background: var(--color-primary);
+      border-radius: var(--radius-sm);
+      opacity: 0.3;
+      transition: background 0.3s;
+    }
+
+    .spacing-item .value {
+      font-size: var(--fs-caption);
+      color: var(--color-text-muted);
+      font-family: monospace;
+    }
+
+    /* ===== BORDER RADIUS ===== */
+    .radius-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: var(--space-16);
+    }
+
+    .radius-box {
+      width: 100%;
+      height: 80px;
+      background: var(--color-surface);
+      border: 2px solid var(--color-border);
+    }
+
+    .radius-box.sm { border-radius: var(--radius-sm); }
+    .radius-box.md { border-radius: var(--radius-md); }
+    .radius-box.lg { border-radius: var(--radius-lg); }
+    .radius-box.xl { border-radius: var(--radius-xl); }
+    .radius-box.full { border-radius: var(--radius-full); }
+
+    .radius-label {
+      margin-top: var(--space-8);
+      font-size: var(--fs-body-sm);
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .radius-label .val {
+      font-weight: 400;
+      color: var(--color-text-muted);
+      font-family: monospace;
+      font-size: var(--fs-caption);
+      display: block;
+    }
+
+    /* ===== SHADOWS ===== */
+    .shadow-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: var(--space-16);
+    }
+
+    .shadow-box {
+      background: var(--color-card);
+      border-radius: var(--radius-md);
+      padding: var(--space-32);
+      text-align: center;
+      font-size: var(--fs-body-sm);
+      font-weight: 600;
+      border: 1px solid var(--color-border);
+    }
+
+    .shadow-box.sm { box-shadow: var(--shadow-sm); }
+    .shadow-box.md { box-shadow: var(--shadow-md); }
+    .shadow-box.lg { box-shadow: var(--shadow-lg); }
+    .shadow-box.xl { box-shadow: var(--shadow-xl); }
+
+    /* ===== COMPONENT SHOWCASE ===== */
+    .component-showcase {
+      background: var(--color-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-32);
+      margin-bottom: var(--space-24);
+    }
+
+    .component-showcase.compact {
+      padding: var(--space-20);
+    }
+
+    .component-showcase .showcase-label {
+      font-size: var(--fs-caption);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-16);
+    }
+
+    /* ===== BUTTONS ===== */
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-12);
+      align-items: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-8);
+      font-family: var(--font-family);
+      font-size: var(--fs-btn);
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      line-height: 1;
+      border: 2px solid transparent;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .btn:focus-visible {
+      outline: 2px solid var(--color-primary);
+      outline-offset: 2px;
+    }
+
+    .btn-sm { padding: 0.375rem 1rem; font-size: var(--fs-body-sm); height: 32px; }
+    .btn-md { padding: 0.625rem 1.5rem; font-size: var(--fs-btn); height: 44px; }
+    .btn-lg { padding: 0.875rem 2rem; font-size: 1.0625rem; height: 56px; }
+
+    .btn-primary {
+      background: var(--color-primary);
+      color: var(--color-card);
+      border-color: var(--color-primary);
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.2);
+      transform: translateY(-1px);
+    }
+
+    .btn-primary:active {
+      transform: scale(0.97);
+    }
+
+    .btn-primary:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      filter: none;
+      transform: none;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--color-primary);
+      border-color: var(--color-primary);
+    }
+
+    .btn-secondary:hover {
+      background: var(--color-primary);
+      color: var(--color-card);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary:active {
+      transform: scale(0.97);
+    }
+
+    .btn-secondary:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--color-text);
+      border-color: transparent;
+    }
+
+    .btn-ghost:hover {
+      background: var(--color-surface);
+    }
+
+    .btn-ghost:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    /* ===== CARDS ===== */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: var(--space-20);
+    }
+
+    .card-service {
+      background: var(--color-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--space-24);
+      transition: all 0.3s ease;
+    }
+
+    .card-service:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .card-service .icon {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-md);
+      background: var(--color-surface);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: var(--space-16);
+    }
+
+    .card-service .icon svg {
+      width: 24px;
+      height: 24px;
+      stroke: var(--color-primary);
+      stroke-width: 1.5;
+    }
+
+    .card-service h4 {
+      font-size: var(--fs-h4);
+      font-weight: 600;
+      color: var(--color-primary);
+      margin-bottom: var(--space-8);
+    }
+
+    .card-service p {
+      font-size: var(--fs-body-sm);
+      color: var(--color-text-muted);
+      line-height: 1.6;
+    }
+
+    .card-testimonial {
+      background: var(--color-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-24);
+      max-width: 400px;
+    }
+
+    .card-testimonial .stars {
+      color: var(--color-star);
+      font-size: 1.25rem;
+      letter-spacing: 2px;
+      margin-bottom: var(--space-12);
+    }
+
+    .card-testimonial blockquote {
+      font-size: var(--fs-body);
+      color: var(--color-text);
+      line-height: 1.7;
+      font-style: italic;
+      margin-bottom: var(--space-16);
+    }
+
+    .card-testimonial .author {
+      display: flex;
+      align-items: center;
+      gap: var(--space-12);
+    }
+
+    .card-testimonial .author .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--color-surface);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--color-primary);
+    }
+
+    .card-testimonial .author .info .name {
+      font-size: var(--fs-body-sm);
+      font-weight: 600;
+      color: var(--color-primary);
+    }
+
+    .card-testimonial .author .info .role {
+      font-size: var(--fs-caption);
+      color: var(--color-text-muted);
+    }
+
+    /* ===== TESTIMONIAL CAROUSEL ===== */
+    .carousel-testimonios {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: var(--color-surface);
+    }
+
+    .carousel-testimonios .carousel-track {
+      display: flex;
+      transition: transform 0.5s ease;
+    }
+
+    .carousel-testimonios .carousel-slide {
+      flex: 0 0 33.333%;
+      min-width: 0;
+      height: auto;
+      background: none;
+      padding: var(--space-16) var(--space-8);
+      box-sizing: border-box;
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+    }
+
+    .carousel-testimonios .card-testimonial {
+      width: 100%;
+      box-shadow: var(--shadow-md);
+      margin: 0;
+    }
+
+    @media (max-width: 991px) {
+      .carousel-testimonios .carousel-slide {
+        flex: 0 0 50%;
+        min-width: 0;
+      }
+    }
+
+    @media (max-width: 575px) {
+      .carousel-testimonios .carousel-slide {
+        flex: 0 0 100%;
+        min-width: 0;
+      }
+    }
+
+    .carousel-testimonios .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 2;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: none;
+      background: var(--color-card);
+      color: var(--color-primary);
+      font-size: 1.25rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+      box-shadow: var(--shadow-md);
+    }
+
+    .carousel-testimonios .carousel-btn:hover {
+      background: var(--color-primary);
+      color: #fff;
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    .carousel-testimonios .carousel-btn.prev { left: var(--space-16); }
+    .carousel-testimonios .carousel-btn.next { right: var(--space-16); }
+
+    .carousel-testimonios .carousel-dots {
+      position: absolute;
+      bottom: var(--space-12);
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: var(--space-8);
+      z-index: 2;
+    }
+
+    .carousel-testimonios .carousel-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 2px solid var(--color-secondary);
+      background: transparent;
+      cursor: pointer;
+      transition: all 0.2s;
+      padding: 0;
+    }
+
+    .carousel-testimonios .carousel-dot.active {
+      background: var(--color-primary);
+      border-color: var(--color-primary);
+    }
+
+    /* ===== STATS ===== */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-20);
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: var(--space-24);
+      background: var(--color-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+    }
+
+    .stat-item .number {
+      font-size: var(--fs-display);
+      font-weight: 700;
+      color: var(--color-primary);
+      line-height: 1.1;
+    }
+
+    .stat-item .label {
+      font-size: var(--fs-body-sm);
+      color: var(--color-text-muted);
+      margin-top: var(--space-4);
+    }
+
+    /* ===== TIMELINE ===== */
+    .timeline {
+      position: relative;
+      padding-left: var(--space-32);
+      max-width: 600px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 8px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--color-border);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: var(--space-32);
+    }
+
+    .timeline-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .timeline-item .dot {
+      position: absolute;
+      left: calc(-1 * var(--space-32) + 2px);
+      top: 4px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--color-primary);
+      border: 3px solid var(--color-bg);
+    }
+
+    .timeline-item .year {
+      font-size: var(--fs-h4);
+      font-weight: 700;
+      color: var(--color-primary);
+    }
+
+    .timeline-item .title {
+      font-size: var(--fs-body);
+      font-weight: 600;
+      color: var(--color-text);
+      margin-top: var(--space-4);
+    }
+
+    .timeline-item .desc {
+      font-size: var(--fs-body-sm);
+      color: var(--color-text-muted);
+      margin-top: var(--space-2);
+    }
+
+    /* ===== FORM ELEMENTS ===== */
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-16);
+      max-width: 600px;
+    }
+
+    .form-grid .full-width {
+      grid-column: 1 / -1;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-6);
+    }
+
+    .form-group label {
+      font-size: var(--fs-body-sm);
+      font-weight: 600;
+      color: var(--color-text);
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      font-family: var(--font-family);
+      font-size: var(--fs-body);
+      color: var(--color-text);
+      background: var(--color-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: 0.625rem 0.875rem;
+      transition: all 0.2s ease;
+      width: 100%;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 3px rgba(45,49,66,0.15);
+    }
+
+    .form-group input.error,
+    .form-group textarea.error {
+      border-color: var(--color-error);
+    }
+
+    .form-group input.error:focus,
+    .form-group textarea.error:focus {
+      box-shadow: 0 0 0 3px rgba(198,40,40,0.15);
+    }
+
+    .form-group input.success,
+    .form-group textarea.success {
+      border-color: var(--color-success);
+    }
+
+    .form-group textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .form-group .helper {
+      font-size: var(--fs-caption);
+      color: var(--color-text-muted);
+    }
+
+    .form-group .helper.error {
+      color: var(--color-error);
+    }
+
+    .form-group .helper.success {
+      color: var(--color-success);
+    }
+
+    /* State showcases */
+    .input-states {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-12);
+      max-width: 400px;
+    }
+
+    .input-state-row {
+      display: flex;
+      align-items: center;
+      gap: var(--space-16);
+    }
+
+    .input-state-row .state-label {
+      min-width: 80px;
+      font-size: var(--fs-caption);
+      font-weight: 600;
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .input-state-row input,
+    .input-state-row select {
+      font-family: var(--font-family);
+      font-size: var(--fs-body);
+      color: var(--color-text);
+      background: var(--color-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: 0.625rem 0.875rem;
+      transition: all 0.2s ease;
+      flex: 1;
+    }
+
+    .input-state-row input:focus {
+      outline: none;
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 3px rgba(45,49,66,0.15);
+    }
+
+    .input-state-row input.input-error {
+      border-color: var(--color-error);
+    }
+
+    .input-state-row input.input-success {
+      border-color: var(--color-success);
+    }
+
+    .input-state-row input:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    /* ===== TAGS ===== */
+    .tags-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-8);
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.25rem 0.875rem;
+      font-size: var(--fs-caption);
+      font-weight: 600;
+      border-radius: var(--radius-full);
+      line-height: 1.4;
+    }
+
+    .tag.primary { background: var(--color-primary); color: var(--color-card); }
+    .tag.surface { background: var(--color-surface); color: var(--color-text); }
+    .tag.success { background: var(--color-success); color: #fff; }
+    .tag.warning { background: var(--color-warning); color: #fff; }
+    .tag.border { background: transparent; border: 1px solid var(--color-border); color: var(--color-text); }
+
+    /* ===== NAVBAR PREVIEW ===== */
+    .navbar-preview {
+      background: var(--color-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .navbar-preview .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--space-12) var(--space-24);
+      background: rgba(255,255,255,0.75);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    [data-theme="dark"] .navbar-preview .nav-inner {
+      background: rgba(26,26,46,0.75);
+    }
+
+    .navbar-preview .nav-inner .nav-logo {
+      display: flex;
+      align-items: center;
+      height: 32px;
+      color: var(--color-primary);
+    }
+
+    .navbar-preview .nav-inner .nav-logo svg {
+      height: 100%;
+      width: auto;
+      fill: var(--color-primary);
+    }
+
+    .navbar-preview .nav-inner .nav-links {
+      display: flex;
+      gap: var(--space-24);
+    }
+
+    .navbar-preview .nav-inner .nav-links a {
+      color: var(--color-text);
+      text-decoration: none;
+      font-size: var(--fs-body-sm);
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .navbar-preview .nav-inner .nav-links a:hover {
+      color: var(--color-primary);
+    }
+
+    .navbar-preview .nav-inner .nav-actions {
+      display: flex;
+      gap: var(--space-8);
+      align-items: center;
+    }
+
+    /* ===== SECTION TITLE ===== */
+    .section-title {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto var(--space-32);
+    }
+
+    .section-title .overline {
+      font-size: var(--fs-overline);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-8);
+    }
+
+    .section-title h2 {
+      font-size: var(--fs-h1);
+      font-weight: 700;
+      color: var(--color-primary);
+      margin-bottom: var(--space-12);
+    }
+
+    .section-title p {
+      font-size: var(--fs-body);
+      color: var(--color-text-muted);
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .section-title.left {
+      text-align: left;
+      margin-left: 0;
+    }
+
+    .section-title.left p {
+      margin-left: 0;
+    }
+
+    /* ===== FOOTER MOCK ===== */
+    .footer-mock {
+      background: var(--color-primary);
+      color: #fff;
+      border-radius: var(--radius-lg);
+      padding: var(--space-40);
+    }
+
+    [data-theme="dark"] .footer-mock {
+      background: #1A1A2E;
+    }
+
+    .footer-mock a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .footer-mock a:hover {
+      opacity: 1;
+    }
+
+    .footer-mock .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: var(--space-32);
+    }
+
+    .footer-mock .footer-col .footer-logo {
+      display: flex;
+      align-items: center;
+      height: 36px;
+      margin-bottom: var(--space-12);
+    }
+
+    .footer-mock .footer-col .footer-logo svg {
+      height: 100%;
+      width: auto;
+      fill: #fff;
+    }
+
+    .footer-mock .footer-col h5 {
+      font-size: var(--fs-body-sm);
+      font-weight: 700;
+      margin-bottom: var(--space-8);
+      color: #fff;
+    }
+
+    .footer-mock .footer-col p,
+    .footer-mock .footer-col a {
+      font-size: 0.8125rem;
+      line-height: 1.7;
+      opacity: 0.7;
+      display: block;
+    }
+
+    .footer-mock .footer-col a:hover {
+      opacity: 1;
+    }
+
+    .footer-mock .footer-bottom {
+      margin-top: var(--space-24);
+      padding-top: var(--space-12);
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.65);
+      border-top: 1px solid rgba(255,255,255,0.15);
+    }
+
+    .footer-mock .footer-bottom a {
+      color: rgba(255,255,255,0.65);
+    }
+
+    .footer-mock .footer-bottom a:hover {
+      color: #fff;
+    }
+
+    /* ===== HERO PREVIEW ===== */
+    .hero-preview {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      min-height: 320px;
+      display: flex;
+      align-items: center;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .hero-preview .overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(45,49,66,0.85) 0%, rgba(26,26,46,0.6) 100%);
+    }
+
+    [data-theme="dark"] .hero-preview .overlay {
+      background: linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(26,26,46,0.7) 100%);
+    }
+
+    .hero-preview .hero-content {
+      position: relative;
+      z-index: 1;
+      padding: var(--space-32);
+      max-width: 600px;
+    }
+
+    .hero-preview .hero-content .overline {
+      font-size: var(--fs-overline);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: var(--space-8);
+    }
+
+    .hero-preview .hero-content h2 {
+      font-size: var(--fs-display);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: var(--space-16);
+    }
+
+    .hero-preview .hero-content p {
+      font-size: var(--fs-body);
+      color: rgba(255,255,255,0.8);
+      max-width: 480px;
+      margin-bottom: var(--space-20);
+    }
+
+    .hero-preview .hero-stats {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      gap: var(--space-24);
+      padding: var(--space-16) var(--space-32);
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(8px);
+      flex-wrap: wrap;
+    }
+
+    .hero-preview .hero-stats span {
+      font-size: var(--fs-body-sm);
+      color: rgba(255,255,255,0.9);
+      font-weight: 500;
+    }
+
+    .hero-preview .hero-stats strong {
+      font-size: var(--fs-h4);
+      font-weight: 700;
+      color: #fff;
+      display: block;
+    }
+
+    /* ===== CARD WITH IMAGE ===== */
+    .card-project {
+      background: var(--color-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .card-project:hover {
+      box-shadow: var(--shadow-lg);
+    }
+
+    .card-project .project-image {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.4s ease;
+    }
+
+    .card-project:hover .project-image {
+      transform: scale(1.05);
+    }
+
+    .card-project .project-body {
+      padding: var(--space-16) var(--space-20) var(--space-20);
+    }
+
+    .card-project .project-body .tag {
+      display: inline-block;
+      font-size: var(--fs-caption);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-primary);
+      background: var(--color-surface);
+      padding: 2px 10px;
+      border-radius: var(--radius-full);
+      margin-bottom: var(--space-8);
+    }
+
+    .card-project .project-body h4 {
+      font-size: var(--fs-h4);
+      font-weight: 600;
+      color: var(--color-primary);
+      margin-bottom: var(--space-6);
+    }
+
+    .card-project .project-body p {
+      font-size: var(--fs-body-sm);
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-12);
+    }
+
+    /* ===== CAROUSEL ===== */
+    .carousel {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      aspect-ratio: 16 / 7;
+    }
+
+    .carousel-track {
+      display: flex;
+      transition: transform 0.5s ease;
+      height: 100%;
+    }
+
+    .carousel-slide {
+      min-width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .carousel-slide .slide-overlay {
+      width: 100%;
+      padding: var(--space-24) var(--space-32);
+      background: linear-gradient(transparent, rgba(0,0,0,0.7));
+      color: #fff;
+    }
+
+    .carousel-slide .slide-overlay h4 {
+      font-size: var(--fs-h4);
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .carousel-slide .slide-overlay p {
+      font-size: var(--fs-body-sm);
+      color: rgba(255,255,255,0.75);
+    }
+
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 2;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(255,255,255,0.9);
+      color: var(--color-primary);
+      font-size: 1.25rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+      box-shadow: var(--shadow-md);
+    }
+
+    .carousel-btn:hover {
+      background: #fff;
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    .carousel-btn.prev { left: var(--space-16); }
+    .carousel-btn.next { right: var(--space-16); }
+
+    .carousel-dots {
+      position: absolute;
+      bottom: var(--space-12);
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: var(--space-8);
+      z-index: 2;
+    }
+
+    .carousel-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.6);
+      background: transparent;
+      cursor: pointer;
+      transition: all 0.2s;
+      padding: 0;
+    }
+
+    .carousel-dot.active {
+      background: #fff;
+      border-color: #fff;
+    }
+
+    /* ===== CTA SECTION ===== */
+    .cta-section-preview {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      min-height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .cta-section-preview .overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(45,49,66,0.8);
+    }
+
+    [data-theme="dark"] .cta-section-preview .overlay {
+      background: rgba(0,0,0,0.8);
+    }
+
+    .cta-section-preview .cta-content {
+      position: relative;
+      z-index: 1;
+      padding: var(--space-32);
+    }
+
+    .cta-section-preview .cta-content h3 {
+      font-size: var(--fs-h2);
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: var(--space-8);
+    }
+
+    .cta-section-preview .cta-content p {
+      font-size: var(--fs-body);
+      color: rgba(255,255,255,0.8);
+      margin-bottom: var(--space-20);
+    }
+
+    /* ===== ACCORDION ===== */
+    .accordion {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-8);
+    }
+
+    .accordion-item {
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      background: var(--color-card);
+      overflow: hidden;
+      transition: box-shadow 0.2s;
+    }
+
+    .accordion-item:hover {
+      box-shadow: var(--shadow-sm);
+    }
+
+    .accordion-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: var(--space-16) var(--space-20);
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: var(--font-family);
+      font-size: var(--fs-body);
+      font-weight: 600;
+      color: var(--color-primary);
+      text-align: left;
+      gap: var(--space-12);
+      transition: background 0.2s;
+    }
+
+    .accordion-header:hover {
+      background: var(--color-surface);
+    }
+
+    .accordion-header:focus-visible {
+      outline: 2px solid var(--color-primary);
+      outline-offset: -2px;
+    }
+
+    .accordion-header .icon {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      transition: transform 0.3s ease;
+      color: var(--color-text-muted);
+    }
+
+    .accordion-item.open .accordion-header .icon {
+      transform: rotate(45deg);
+    }
+
+    .accordion-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .accordion-item.open .accordion-body {
+      max-height: var(--accordion-height, 300px);
+    }
+
+    .accordion-body-inner {
+      padding: 0 var(--space-20) var(--space-16);
+      font-size: var(--fs-body-sm);
+      color: var(--color-text-muted);
+      line-height: 1.7;
+    }
+
+    /* ===== ACCESSIBILITY TABLE ===== */
+    .a11y-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: var(--fs-body-sm);
+    }
+
+    .a11y-table th,
+    .a11y-table td {
+      text-align: left;
+      padding: var(--space-12) var(--space-16);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .a11y-table th {
+      font-weight: 700;
+      color: var(--color-primary);
+      background: var(--color-surface);
+    }
+
+    .a11y-table td {
+      color: var(--color-text);
+    }
+
+    .a11y-table .pass {
+      color: var(--color-success);
+      font-weight: 700;
+    }
+
+    .a11y-table .fail {
+      color: var(--color-error);
+      font-weight: 700;
+    }
+
+    /* ===== HAMBURGER OVERRIDE ===== */
+    .sidebar-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: var(--space-8);
+    }
+
+    .sidebar-toggle .bar {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--color-text);
+      margin: 5px 0;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 999;
+    }
+
+    .sidebar-overlay.open {
+      display: block;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        transform: translateX(-100%);
+      }
+
+      .sidebar.open {
+        transform: translateX(0);
+      }
+
+      .main {
+        margin-left: 0;
+      }
+
+      .sidebar-toggle {
+        display: block;
+      }
+
+      .main-header {
+        padding: var(--space-12) var(--space-16);
+      }
+
+      .main-header h1 {
+        font-size: var(--fs-h4);
+      }
+
+      .main-content {
+        padding: var(--space-24) var(--space-16) var(--space-64);
+      }
+
+      .ds-section {
+        margin-bottom: var(--space-40);
+      }
+
+      .swatch-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-mock .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .footer-mock .footer-bottom {
+        flex-direction: column;
+        gap: var(--space-8);
+        text-align: center;
+      }
+
+      .navbar-preview .nav-inner .nav-links {
+        display: none;
+      }
+
+      .shadow-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .radius-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .stats-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .footer-mock .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .shadow-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .radius-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .input-state-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .input-state-row input,
+      .input-state-row select {
+        width: 100%;
+      }
+    }
+
+    /* ===== UTILITIES ===== */
+    .mb-16 { margin-bottom: var(--space-16); }
+    .mb-24 { margin-bottom: var(--space-24); }
+    .mb-32 { margin-bottom: var(--space-32); }
+    .gap-12 { gap: var(--space-12); }
+    .flex { display: flex; }
+    .flex-wrap { flex-wrap: wrap; }
+    .items-center { align-items: center; }
+    .justify-between { justify-content: space-between; }
+    .code {
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: var(--fs-caption);
+      background: var(--color-surface);
+      padding: 2px 6px;
+      border-radius: var(--radius-sm);
+      color: var(--color-text);
+    }
+
+    /* Copy toast */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--color-primary);
+      color: var(--color-card);
+      padding: 8px 16px;
+      border-radius: var(--radius-md);
+      font-size: var(--fs-body-sm);
+      font-weight: 500;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 9999;
+      pointer-events: none;
+    }
+
+    .toast.show {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <a href="#" class="logo">
+        <span class="logo-dot"></span>
+        MonkieStudio
+      </a>
+      <div class="version">Design System v1.0</div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-label">Tokens</div>
+      <a href="#colores" class="active">Colores</a>
+      <a href="#tipografia">Tipografía</a>
+      <a href="#spacing">Spacing</a>
+      <a href="#bordes">Bordes</a>
+      <a href="#sombras">Sombras</a>
+      <div class="nav-label">Componentes</div>
+      <a href="#botones">Botones</a>
+      <a href="#navbar">Header / Navbar</a>
+      <a href="#cards">Cards</a>
+      <a href="#stats">Indicadores</a>
+      <a href="#timeline">Timeline</a>
+      <a href="#formulario">Formulario</a>
+      <a href="#tags">Tags</a>
+      <a href="#section-title">Título de Sección</a>
+      <div class="nav-label">Visuales</div>
+      <a href="#hero-preview">Hero con Imagen</a>
+      <a href="#card-image">Card con Imagen</a>
+      <a href="#carousel">Carrusel</a>
+      <a href="#cta-section">Sección CTA</a>
+      <a href="#accordion">Acordeón</a>
+      <a href="#carousel-testimonios">Carrusel Testimonios</a>
+      <a href="#footer">Footer</a>
+      <div class="nav-label">Recursos</div>
+      <a href="#accesibilidad">Accesibilidad</a>
+    </nav>
+  </aside>
+
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <div class="main">
+    <header class="main-header">
+      <button class="sidebar-toggle" id="sidebarToggle" aria-label="Abrir menú">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+      <h1>Design System</h1>
+      <div class="header-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Cambiar modo oscuro/claro">&#9681;</button>
+      </div>
+    </header>
+
+    <div class="main-content">
+
+      <!-- ==================== COLORES ==================== -->
+      <section class="ds-section" id="colores">
+        <div class="ds-section-header">
+          <div class="overline">Tokens</div>
+          <h2>Colores</h2>
+          <p>Paleta completa con modo claro y oscuro. Todos cumplen WCAG AA en sus usos previstos.</p>
+        </div>
+
+        <div class="ds-subsection">
+          <h3>Light Mode</h3>
+          <div class="swatch-grid">
+            <div class="swatch-card">
+              <div class="swatch-preview" style="background:#FAFAFA">
+                <span class="badge dark">Bg</span>
+              </div>
+              <div class="swatch-info">
+                <div class="token-name">--color-bg</div>
+                <div class="token-hex">
+                  <span>#FAFAFA</span>
+                  <button onclick="copyHex('#FAFAFA')">Copiar</button>
+                </div>
+              </div>
+            </div>
+            <div class="swatch-card">
+              <div class="swatch-preview" style="background:#D8D5DB">
+                <span class="badge dark">Dominant</span>
+              </div>
+              <div class="swatch-info">
+                <div class="token-name">--color-surface</div>
+                <div class="token-hex">
+                  <span>#D8D5DB</span>
+                  <button onclick="copyHex('#D8D5DB')">Copiar</button>
+                </div>
+              </div>
+            </div>
+            <div class="swatch-card">
+              <div class="swatch-preview" style="background:#FFFFFF">
+                <span class="badge dark">Card</span>
+              </div>
+              <div class="swatch-info">
+                <div class="token-name">--color-card</div>
+                <div class="token-hex">
+                  <span>#FFFFFF</span>
+                  <button onclick="copyHex('#FFFFFF')">Copiar</button>
+                </div>
+              </div>
+            </div>
+            <div class="swatch-card">
+              <div class="swatch-preview" style="background:#2D3142">
+                <span class="badge light">Accent</span>
+              </div>
+              <div class="swatch-info">
+                <div class="token-name">--color-primary</div>
+                <div class="token-hex">
+                  <span>#2D3142</span>
+                  <button onclick="copyHex('#2D3142')">Copiar</button>
+                </div>
+              </div>
+            </div>
+            <div class="swatch-card">
+              <div class="swatch-preview" style="background:#ADACB5">
+                <span class="badge dark">Secondary</span>
+              </div>
+              <div class="swatch-info">
+                <div class="token-name">--color-secondary</div>
+                <div class="token-hex">
+                  <span>#ADACB5</span>
+                  <button onclick="copyHex('#ADACB5')">Copiar</button>
+                </div>
+              </div>
+            </div>
+            <div class="swatch-card">
+              <div class="swatch-preview" style="background:#2D3142">
+                <span class="badge light">Text</span>
+              </div>
+              <div class="swatch-info">
+                <div class="token-name">--color-text</div>
+                <div class="token-hex">
+                  <span>#2D3142</span>
+                  <button onclick="copyHex('#2D3142')">Copiar</button>
+                </div>
+              </div>
+            </div>
+            <div class="swatch-card">
+              <div class="swatch-preview" style="background:#6B6A75">
+                <span class="badge light">Muted</span>
+              </div>
+              <div class="swatch-info">
+                <div class="token-name">--color-text-muted</div>
+                <div class="token-hex">
+                  <span>#6B6A75</span>
+                  <button onclick="copyHex('#6B6A75')">Copiar</button>
+                </div>
+              </div>
+            </div>
+            <div class="swatch-card">
+              <div class="swatch-preview" style="background:#C8C6CE">
+                <span class="badge dark">Border</span>
+              </div>
+              <div class="swatch-info">
+                <div class="token-name">--color-border</div>
+                <div class="token-hex">
+                  <span>#C8C6CE</span>
+                  <button onclick="copyHex('#C8C6CE')">Copiar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ds-subsection">
+          <h3>Dark Mode</h3>
+          <div class="swatch-grid">
+            <div class="swatch-card">
+              <div class="swatch-preview" style="background:#1A1A2E">
+                <span class="badge light">Bg</span>
+              </div>
+              <div class="swatch-info">
+                <div class="token-name">--color-bg (dark)</div>
+                <div class="token-hex">
+                  <span>#1A1A2E</span>
+                  <button onclick="copyHex('#1A1A2E')">Copiar</button>
+                </div>
+              </div>
+            </div>
+            <div class="swatch-card">
+              <div class="swatch-preview" style="background:#2D3142">
+                <span class="badge light">Surface</span>
+              </div>
+              <div class="swatch-info">
+                <div class="token-name">--color-surface (dark)</div>
+                <div class="token-hex">
+                  <span>#2D3142</span>
+                  <button onclick="copyHex('#2D3142')">Copiar</button>
+                </div>
+              </div>
+            </div>
+            <div class="swatch-card">
+              <div class="swatch-preview" style="background:#383B50">
+                <span class="badge light">Card</span>
+              </div>
+              <div class="swatch-info">
+                <div class="token-name">--color-card (dark)</div>
+                <div class="token-hex">
+                  <span>#383B50</span>
+                  <button onclick="copyHex('#383B50')">Copiar</button>
+                </div>
+              </div>
+            </div>
+            <div class="swatch-card">
+              <div class="swatch-preview" style="background:#E8E5EB">
+                <span class="badge dark">Primary</span>
+              </div>
+              <div class="swatch-info">
+                <div class="token-name">--color-primary (dark)</div>
+                <div class="token-hex">
+                  <span>#E8E5EB</span>
+                  <button onclick="copyHex('#E8E5EB')">Copiar</button>
+                </div>
+              </div>
+            </div>
+            <div class="swatch-card">
+              <div class="swatch-preview" style="background:#9A98A3">
+                <span class="badge dark">Secondary</span>
+              </div>
+              <div class="swatch-info">
+                <div class="token-name">--color-secondary (dark)</div>
+                <div class="token-hex">
+                  <span>#9A98A3</span>
+                  <button onclick="copyHex('#9A98A3')">Copiar</button>
+                </div>
+              </div>
+            </div>
+            <div class="swatch-card">
+              <div class="swatch-preview" style="background:#E8E5EB">
+                <span class="badge dark">Text</span>
+              </div>
+              <div class="swatch-info">
+                <div class="token-name">--color-text (dark)</div>
+                <div class="token-hex">
+                  <span>#E8E5EB</span>
+                  <button onclick="copyHex('#E8E5EB')">Copiar</button>
+                </div>
+              </div>
+            </div>
+            <div class="swatch-card">
+              <div class="swatch-preview" style="background:#ADACB5">
+                <span class="badge dark">Muted</span>
+              </div>
+              <div class="swatch-info">
+                <div class="token-name">--color-text-muted (dark)</div>
+                <div class="token-hex">
+                  <span>#ADACB5</span>
+                  <button onclick="copyHex('#ADACB5')">Copiar</button>
+                </div>
+              </div>
+            </div>
+            <div class="swatch-card">
+              <div class="swatch-preview" style="background:#4A4D5E">
+                <span class="badge light">Border</span>
+              </div>
+              <div class="swatch-info">
+                <div class="token-name">--color-border (dark)</div>
+                <div class="token-hex">
+                  <span>#4A4D5E</span>
+                  <button onclick="copyHex('#4A4D5E')">Copiar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ds-subsection">
+          <h3>Colores Funcionales</h3>
+          <div class="swatch-grid">
+            <div class="swatch-card">
+              <div class="swatch-preview" style="background:var(--color-success)">
+                <span class="badge light">Success</span>
+              </div>
+              <div class="swatch-info">
+                <div class="token-name">--color-success</div>
+                <div class="token-hex">
+                  <span id="successHex">#2E7D32 / #66BB6A</span>
+                  <button onclick="copyHex(document.getElementById('successHex').textContent.trim())">Copiar</button>
+                </div>
+              </div>
+            </div>
+            <div class="swatch-card">
+              <div class="swatch-preview" style="background:var(--color-error)">
+                <span class="badge light">Error</span>
+              </div>
+              <div class="swatch-info">
+                <div class="token-name">--color-error</div>
+                <div class="token-hex">
+                  <span id="errorHex">#C62828 / #EF5350</span>
+                  <button onclick="copyHex(document.getElementById('errorHex').textContent.trim())">Copiar</button>
+                </div>
+              </div>
+            </div>
+            <div class="swatch-card">
+              <div class="swatch-preview" style="background:var(--color-warning)">
+                <span class="badge dark">Warning</span>
+              </div>
+              <div class="swatch-info">
+                <div class="token-name">--color-warning</div>
+                <div class="token-hex">
+                  <span id="warningHex">#F57F17 / #FFB74D</span>
+                  <button onclick="copyHex(document.getElementById('warningHex').textContent.trim())">Copiar</button>
+                </div>
+              </div>
+            </div>
+            <div class="swatch-card">
+              <div class="swatch-preview" style="background:var(--color-star)">
+                <span class="badge dark">Star</span>
+              </div>
+              <div class="swatch-info">
+                <div class="token-name">--color-star</div>
+                <div class="token-hex">
+                  <span>#F5B342</span>
+                  <button onclick="copyHex('#F5B342')">Copiar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== TIPOGRAFÍA ==================== -->
+      <section class="ds-section" id="tipografia">
+        <div class="ds-section-header">
+          <div class="overline">Tokens</div>
+          <h2>Tipografía</h2>
+          <p>Inter variable — un solo archivo, todos los pesos. Optimizada para español y pantalla.</p>
+        </div>
+
+        <div class="typo-grid">
+          <div class="typo-item">
+            <div class="preview display">MonkieStudio crea marcas</div>
+            <div class="meta">
+              <span>Display</span>
+              <span>clamp(40, 5vw, 56px)</span>
+              <span>700</span>
+              <span>-0.02em</span>
+              <span>1.1</span>
+            </div>
+          </div>
+          <div class="typo-item">
+            <div class="preview h1">Heading 1 — Título de sección</div>
+            <div class="meta">
+              <span>H1</span>
+              <span>clamp(32, 4vw, 44px)</span>
+              <span>700</span>
+              <span>-0.015em</span>
+              <span>1.15</span>
+            </div>
+          </div>
+          <div class="typo-item">
+            <div class="preview h2">Heading 2 — Subtítulo de sección</div>
+            <div class="meta">
+              <span>H2</span>
+              <span>clamp(26, 3vw, 36px)</span>
+              <span>600</span>
+              <span>-0.01em</span>
+              <span>1.2</span>
+            </div>
+          </div>
+          <div class="typo-item">
+            <div class="preview h3">Heading 3 — Título de tarjeta</div>
+            <div class="meta">
+              <span>H3</span>
+              <span>clamp(22, 2.5vw, 28px)</span>
+              <span>600</span>
+              <span>0</span>
+              <span>1.25</span>
+            </div>
+          </div>
+          <div class="typo-item">
+            <div class="preview h4">Heading 4 — Subtítulo de tarjeta</div>
+            <div class="meta">
+              <span>H4</span>
+              <span>clamp(18, 1.5vw, 22px)</span>
+              <span>600</span>
+              <span>0</span>
+              <span>1.3</span>
+            </div>
+          </div>
+          <div class="typo-item">
+            <div class="preview body">Body — Texto general. En MonkieStudio creemos que cada marca tiene una historia única que merece ser contada con creatividad, estrategia y autenticidad. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+            <div class="meta">
+              <span>Body</span>
+              <span>16px</span>
+              <span>400</span>
+              <span>0</span>
+              <span>1.6</span>
+            </div>
+          </div>
+          <div class="typo-item">
+            <div class="preview body-sm">Body Small — Descripciones, metadatos. Texto de apoyo con tamaño reducido para información secundaria.</div>
+            <div class="meta">
+              <span>Body Sm</span>
+              <span>14px</span>
+              <span>400</span>
+              <span>0</span>
+              <span>1.5</span>
+            </div>
+          </div>
+          <div class="typo-item">
+            <div class="preview btn">Button — Llamadas a la acción</div>
+            <div class="meta">
+              <span>Button</span>
+              <span>15px</span>
+              <span>600</span>
+              <span>0.01em</span>
+              <span>1</span>
+            </div>
+          </div>
+          <div class="typo-item">
+            <div class="preview overline">Overline — Etiqueta de sección</div>
+            <div class="meta">
+              <span>Overline</span>
+              <span>11px</span>
+              <span>700</span>
+              <span>0.08em</span>
+              <span>1</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== SPACING ==================== -->
+      <section class="ds-section" id="spacing">
+        <div class="ds-section-header">
+          <div class="overline">Tokens</div>
+          <h2>Spacing</h2>
+          <p>Sistema de 8px. Todas las medidas se alinean a esta escala.</p>
+        </div>
+
+        <div class="spacing-grid">
+          <div class="spacing-item"><span class="label">--space-4</span><div class="bar" style="width:4px"></div><span class="value">4px</span></div>
+          <div class="spacing-item"><span class="label">--space-8</span><div class="bar" style="width:8px"></div><span class="value">8px</span></div>
+          <div class="spacing-item"><span class="label">--space-12</span><div class="bar" style="width:12px"></div><span class="value">12px</span></div>
+          <div class="spacing-item"><span class="label">--space-16</span><div class="bar" style="width:16px"></div><span class="value">16px</span></div>
+          <div class="spacing-item"><span class="label">--space-20</span><div class="bar" style="width:20px"></div><span class="value">20px</span></div>
+          <div class="spacing-item"><span class="label">--space-24</span><div class="bar" style="width:24px"></div><span class="value">24px</span></div>
+          <div class="spacing-item"><span class="label">--space-32</span><div class="bar" style="width:32px"></div><span class="value">32px</span></div>
+          <div class="spacing-item"><span class="label">--space-40</span><div class="bar" style="width:40px"></div><span class="value">40px</span></div>
+          <div class="spacing-item"><span class="label">--space-48</span><div class="bar" style="width:48px"></div><span class="value">48px</span></div>
+          <div class="spacing-item"><span class="label">--space-56</span><div class="bar" style="width:56px"></div><span class="value">56px</span></div>
+          <div class="spacing-item"><span class="label">--space-64</span><div class="bar" style="width:64px"></div><span class="value">64px</span></div>
+          <div class="spacing-item"><span class="label">--space-80</span><div class="bar" style="width:80px"></div><span class="value">80px</span></div>
+          <div class="spacing-item"><span class="label">--space-96</span><div class="bar" style="width:96px"></div><span class="value">96px</span></div>
+          <div class="spacing-item"><span class="label">--space-120</span><div class="bar" style="width:120px"></div><span class="value">120px</span></div>
+          <div class="spacing-item"><span class="label">--space-160</span><div class="bar" style="width:160px"></div><span class="value">160px</span></div>
+        </div>
+      </section>
+
+      <!-- ==================== BORDES ==================== -->
+      <section class="ds-section" id="bordes">
+        <div class="ds-section-header">
+          <div class="overline">Tokens</div>
+          <h2>Border Radius</h2>
+          <p>Consistencia en todas las esquinas del sistema.</p>
+        </div>
+
+        <div class="radius-grid">
+          <div>
+            <div class="radius-box sm"></div>
+            <div class="radius-label">sm <span class="val">4px</span></div>
+          </div>
+          <div>
+            <div class="radius-box md"></div>
+            <div class="radius-label">md <span class="val">8px</span></div>
+          </div>
+          <div>
+            <div class="radius-box lg"></div>
+            <div class="radius-label">lg <span class="val">12px</span></div>
+          </div>
+          <div>
+            <div class="radius-box xl"></div>
+            <div class="radius-label">xl <span class="val">16px</span></div>
+          </div>
+          <div>
+            <div class="radius-box full"></div>
+            <div class="radius-label">full <span class="val">9999px</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== SOMBRAS ==================== -->
+      <section class="ds-section" id="sombras">
+        <div class="ds-section-header">
+          <div class="overline">Tokens</div>
+          <h2>Sombras</h2>
+          <p>Elevaciones para cards, modales y elementos flotantes.</p>
+        </div>
+
+        <div class="shadow-grid">
+          <div class="shadow-box sm">--shadow-sm</div>
+          <div class="shadow-box md">--shadow-md</div>
+          <div class="shadow-box lg">--shadow-lg</div>
+          <div class="shadow-box xl">--shadow-xl</div>
+        </div>
+      </section>
+
+      <!-- ==================== BOTONES ==================== -->
+      <section class="ds-section" id="botones">
+        <div class="ds-section-header">
+          <div class="overline">Componentes</div>
+          <h2>Botones</h2>
+          <p>3 variantes × 3 tamaños. Touch target mínimo 44px en md.</p>
+        </div>
+
+        <div class="ds-subsection">
+          <h3>Primary</h3>
+          <div class="component-showcase">
+            <div class="showcase-label">Lleno — Acción principal</div>
+            <div class="btn-group">
+              <button class="btn btn-primary btn-sm">Small</button>
+              <button class="btn btn-primary btn-md">Medium</button>
+              <button class="btn btn-primary btn-lg">Large</button>
+            </div>
+            <div class="btn-group" style="margin-top:var(--space-12)">
+              <button class="btn btn-primary btn-md" disabled>Disabled</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="ds-subsection">
+          <h3>Secondary</h3>
+          <div class="component-showcase">
+            <div class="showcase-label">Outline — Acción secundaria</div>
+            <div class="btn-group">
+              <button class="btn btn-secondary btn-sm">Small</button>
+              <button class="btn btn-secondary btn-md">Medium</button>
+              <button class="btn btn-secondary btn-lg">Large</button>
+            </div>
+            <div class="btn-group" style="margin-top:var(--space-12)">
+              <button class="btn btn-secondary btn-md" disabled>Disabled</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="ds-subsection">
+          <h3>Ghost</h3>
+          <div class="component-showcase">
+            <div class="showcase-label">Texto — Acción terciaria</div>
+            <div class="btn-group">
+              <button class="btn btn-ghost btn-sm">Small</button>
+              <button class="btn btn-ghost btn-md">Medium</button>
+              <button class="btn btn-ghost btn-lg">Large</button>
+            </div>
+            <div class="btn-group" style="margin-top:var(--space-12)">
+              <button class="btn btn-ghost btn-md" disabled>Disabled</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="ds-subsection">
+          <h3>Estados interactivos</h3>
+          <div class="component-showcase compact">
+            <div class="btn-group">
+              <button class="btn btn-primary btn-md">Default</button>
+              <button class="btn btn-primary btn-md" style="filter:brightness(1.2);transform:translateY(-1px)">Hover</button>
+              <button class="btn btn-primary btn-md" style="transform:scale(0.97)">Active</button>
+              <button class="btn btn-primary btn-md" style="outline:2px solid var(--color-primary);outline-offset:2px">Focus</button>
+              <button class="btn btn-primary btn-md" disabled>Disabled</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== NAVBAR ==================== -->
+      <section class="ds-section" id="navbar">
+        <div class="ds-section-header">
+          <div class="overline">Componentes</div>
+          <h2>Header / Navbar</h2>
+          <p>Barra de navegación principal con el logo oficial. Fondo translúcido con blur al scrollear. Cambia de color en dark/light mode.</p>
+        </div>
+
+        <div class="component-showcase compact">
+          <div class="navbar-preview">
+            <div class="nav-inner">
+              <div class="nav-logo">
+                <svg data-name="Layer 1" viewBox="0 0 280.1 63.02" fill="currentColor">
+                  <path d="M105.5,28.62c-.5,0-.9,0-1.4.1-4.8-14.6-17.6-25.6-33.3-27.6s-8.6-.7-11.7-.7-9.9.5-11.8.7c-8.9,1.2-16.8,5.4-22.9,11.4-4.4,4.4-7.8,9.9-9.8,16h-1.2c-7.4,0-13.4,6-13.4,13.4s6,13.4,13.4,13.4,1.2,0,1.9-.1c1,2.8,2.4,5.4,4,7.8h14.4c-5-2.8-8.4-7.9-8.9-13.9v-1.4c0-2.9.7-5.6,2-8,2.9-5.6,8.8-9.5,15.6-9.5s11.7,3.2,14.8,8.1c1.3,2,4.2,2,5.5,0,3.1-4.9,8.6-8.1,14.8-8.1s12.7,3.9,15.6,9.6c1.2,2.4,1.9,5.1,1.9,8s0,.9,0,1.3c-.5,6-3.9,11.2-8.9,13.9h13.6c1.6-2.5,3-5.1,4-7.9.8.2,1.7.2,2.5.2,8.1,0,14.5-7.1,13.3-15.4-1-6.7-7.1-11.7-13.8-11.3h-.2ZM6.9,42.02c0-3.5,2.8-6.4,6.3-6.6-.3,1.8-.4,3.7-.4,5.6s.2,5.1.7,7.5c-3.6,0-6.5-3-6.5-6.6l.1.1ZM106.1,48.62h-.7c.5-2.4.7-4.9.7-7.5s-.1-3.8-.4-5.6h.4c3.7,0,6.6,3,6.6,6.6s-2.9,6.6-6.6,6.6v-.1Z"/>
+                  <path d="M41,45.52c-3,0-5.4,2.4-5.4,5.4s2.4,5.4,5.4,5.4,5.4-2.4,5.4-5.4-2.4-5.4-5.4-5.4Z"/>
+                  <path d="M78.6,45.52c-3,0-5.4,2.4-5.4,5.4s2.4,5.4,5.4,5.4,5.4-2.4,5.4-5.4-2.4-5.4-5.4-5.4Z"/>
+                  <path d="M139.4,6.12h8.7l7.1,8.9h.4l7.1-8.9h8.7v28.1h-8.8v-16.2h-.4l-6.5,8.5h-.4l-6.5-8.5h-.4v16.2h-8.8V6.12h-.2Z"/>
+                  <path d="M174.3,20.12c0-8.9,6.6-14.6,15.1-14.6s15.1,5.7,15.1,14.6-6.6,14.7-15.1,14.7-15.1-5.4-15.1-14.7ZM195,20.12c0-3.5-2.2-5.9-5.7-5.9s-5.7,2.5-5.7,5.9,2.2,6,5.7,6,5.7-2.5,5.7-6Z"/>
+                  <path d="M207.5,6.12h9.6l10.4,15.2h.3V6.12h8.6v28.1h-9.6l-10.3-15.2h-.3v15.2h-8.6V6.12h-.1Z"/>
+                  <path d="M253.7,24.62h-.7l-3.3,3.8v5.9h-9.2V6.12h9.2v10h.6l8.3-10h10.8l-9.7,11,9.1,17.1h-10l-5-9.6h-.1Z"/>
+                  <path d="M270.9,6.12h9.2v28.1h-9.2V6.12Z"/>
+                  <path d="M140.3,59.72c-.3,0-.5,0-.6-.1-.1,0-.2-.2-.3-.3s0-.3,0-.5v-12.8c0-.4,0-.6.2-.7s.4-.2.8-.2h9c.1,0,.2.1.3.3,0,.1.1.4.1.6s0,.5-.1.6c0,.1-.2.2-.3.3h-8.1v4.4h5.8c.1,0,.2.1.3.3,0,.1.1.3.1.6s0,.4-.1.6c0,.1-.2.2-.3.2h-5.7v4.8h8.1c.1,0,.2.1.3.3,0,.1.1.3.1.6s0,.5-.1.6c0,.1-.2.2-.3.3h-9l-.2.1Z"/>
+                  <path d="M165.6,59.92c-.5,0-1,0-1.5-.2-.5-.1-.9-.3-1.3-.5-.4-.2-.7-.5-1-.7s-.5-.5-.7-.8c-.1-.2-.2-.4-.3-.6v-.4c0-.1.2-.3.4-.5s.4-.2.6-.2.3,0,.5.2.3.3.5.5c.4.5.8.8,1.3,1s1,.3,1.5.3,1.2,0,1.7-.3c.5-.2.9-.4,1.2-.8.3-.3.4-.8.4-1.3s-.1-.8-.3-1.1-.5-.6-.9-.8-.8-.4-1.3-.6c-.5-.2-.9-.3-1.4-.5-.4-.1-.7-.3-1.1-.4-.4-.2-.7-.3-1-.5s-.6-.5-.8-.7c-.2-.3-.4-.6-.6-1s-.2-.8-.2-1.3c0-.8.2-1.5.6-2s.9-1,1.6-1.4c.7-.3,1.4-.5,2.3-.5s1,0,1.5.1c.4,0,.8.2,1.2.4.3.2.6.3.9.5.2.2.4.3.5.5.3.3.4.5.4.7s0,.4-.3.7c-.2.3-.5.4-.7.4s-.4,0-.7-.3-.5-.5-.8-.7-.6-.3-.9-.3h-1.1c-.4,0-.7,0-1,.1-.3,0-.6.2-.8.4s-.4.4-.5.7-.2.6-.2.9.1.7.3,1,.5.5.8.7.7.3,1.1.5c.4.1.9.3,1.3.4.5.2,1,.3,1.5.6.5.2.9.5,1.3.8.4.3.7.7.9,1.2s.4,1.1.4,1.8-.1,1.3-.4,1.9c-.3.5-.7,1-1.1,1.3-.5.4-1,.6-1.6.8-.6.2-1.3.3-1.9.3l-.3-.3Z"/>
+                  <path d="M193.1,45.02h.5c.1,0,.2.1.3.3v.6c0,.3,0,.4-.1.6,0,.1-.2.2-.3.2h-4.9v12.5c0,.1-.1.2-.3.3-.1,0-.3.1-.6.1s-.5,0-.6-.1c-.1,0-.2-.2-.3-.3s0-.3,0-.5v-12h-4.9c-.2,0-.2-.1-.3-.2,0-.1-.1-.3-.1-.6s0-.4.1-.6.2-.2.3-.3h11.2Z"/>
+                  <path d="M211.3,59.82c-.9,0-1.8-.2-2.5-.5s-1.4-.8-1.9-1.4-.9-1.3-1.2-2.1-.4-1.7-.4-2.7v-7.6c0-.1.1-.2.3-.3.1,0,.3-.1.6-.1s.5,0,.6.1c.1,0,.2.2.3.3v7.6c0,.9.2,1.8.5,2.5s.8,1.3,1.4,1.7c.6.4,1.4.6,2.3.6s1.6-.2,2.2-.6c.6-.4,1.1-.9,1.4-1.7.3-.7.5-1.6.5-2.6v-7.7c0-.1.1-.2.3-.3s.3-.1.6-.1.5,0,.6.1c.1,0,.2.2.3.3v7.7c0,1-.1,1.9-.4,2.7-.3.8-.7,1.5-1.2,2.1s-1.2,1.1-1.9,1.4-1.6.5-2.6.5l.2.1Z"/>
+                  <path d="M230.2,59.72c-.2,0-.4,0-.6-.1-.1,0-.2-.2-.3-.3v-13.8c0-.1.1-.3.3-.3.1,0,.3-.1.6-.1h4.2c1,0,2,.2,2.8.5.9.3,1.6.8,2.2,1.5.6.6,1.1,1.4,1.4,2.3.3.9.5,1.9.5,3s-.2,2.2-.5,3.1c-.3.9-.8,1.7-1.4,2.3-.6.6-1.3,1.1-2.2,1.5s-1.8.5-2.9.5h-4.1v-.1ZM231.2,57.82h3.2c1,0,1.9-.2,2.7-.7.7-.4,1.3-1.1,1.7-1.9.4-.8.6-1.8.6-2.9s-.2-2.1-.6-2.9-1-1.4-1.7-1.9c-.8-.4-1.6-.7-2.7-.7h-3.2v11Z"/>
+                  <path d="M253.9,59.72c-.3,0-.5,0-.6-.1-.1,0-.2-.2-.3-.3s0-.3,0-.5v-13.3c0-.1.1-.3.3-.3.1,0,.3-.1.6-.1s.5,0,.6.1c.1,0,.2.2.3.3v13.8c0,.1-.1.2-.3.3-.1,0-.3.1-.6.1Z"/>
+                  <path d="M273.1,59.82c-1,0-1.9-.2-2.8-.6s-1.7-.9-2.3-1.6c-.7-.7-1.2-1.5-1.6-2.4s-.6-1.8-.6-2.9.2-2,.5-2.9c.4-.9.9-1.7,1.5-2.4.7-.7,1.4-1.2,2.3-1.6.9-.4,1.8-.6,2.7-.6s2,.2,2.8.6c.9.4,1.6.9,2.3,1.6.7.7,1.2,1.5,1.6,2.4s.6,1.9.6,2.9-.2,2-.6,2.9-.9,1.7-1.5,2.4c-.6.7-1.4,1.2-2.2,1.6-.9.4-1.8.6-2.7.6h0ZM272.9,57.92c.7,0,1.4-.1,2.1-.4.6-.3,1.2-.7,1.7-1.2s.9-1.1,1.1-1.8.4-1.4.4-2.2-.1-1.5-.4-2.1-.7-1.3-1.1-1.8c-.5-.5-1-.9-1.7-1.2-.6-.3-1.3-.4-2-.4s-1.4.1-2,.4c-.6.3-1.2.7-1.7,1.2s-.9,1.1-1.1,1.8-.4,1.4-.4,2.2.1,1.5.4,2.2.7,1.3,1.1,1.8c.5.5,1,.9,1.7,1.2.6.3,1.3.4,2,.4l-.1-.1Z"/>
+                </svg>
+              </div>
+              <div class="nav-links">
+                <a href="#">Inicio</a>
+                <a href="#">Nosotros</a>
+                <a href="#">Servicios</a>
+                <a href="#">Clientes</a>
+                <a href="#">Contacto</a>
+              </div>
+              <div class="nav-actions">
+                <button class="btn btn-primary btn-sm" style="font-size:var(--fs-caption);padding:0.375rem 1rem">Solicitar Cotización</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p class="ds-desc"><strong>Mobile:</strong> Hamburger animado (3 líneas → X), menú overlay fullscreen, 64px altura.</p>
+      </section>
+
+      <!-- ==================== CARDS ==================== -->
+      <section class="ds-section" id="cards">
+        <div class="ds-section-header">
+          <div class="overline">Componentes</div>
+          <h2>Cards</h2>
+          <p>Dos variantes: Servicio (icono + título + desc) y Testimonio (estrellas + quote + autor).</p>
+        </div>
+
+        <div class="ds-subsection">
+          <h3>Card — Servicio</h3>
+          <div class="component-showcase">
+            <div class="card-grid">
+              <div class="card-service">
+                <div class="icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9.53 16.122a3 3 0 0 0-5.78 1.128 2.25 2.25 0 0 1-2.4 2.245 4.5 4.5 0 0 0 8.4-2.245c0-.399-.078-.78-.22-1.128Zm0 0a15.998 15.998 0 0 0 3.388-1.62m-5.043-.025a15.994 15.994 0 0 1 1.622-3.395m3.42 3.42a15.995 15.995 0 0 0 4.764-4.648l3.876-5.814a1.151 1.151 0 0 0-1.597-1.597L14.146 6.32a15.996 15.996 0 0 0-4.649 4.763m3.42 3.42a6.776 6.776 0 0 0-3.42-3.42" />
+                  </svg>
+                </div>
+                <h4>Branding</h4>
+                <p>Creamos identidades de marca memorables que conectan con tu audiencia y reflejan tu esencia.</p>
+              </div>
+              <div class="card-service">
+                <div class="icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5" />
+                  </svg>
+                </div>
+                <h4>Desarrollo Web</h4>
+                <p>Sitios web modernos, rápidos y responsivos construidos con las mejores tecnologías del mercado.</p>
+              </div>
+              <div class="card-service">
+                <div class="icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 0 1-.825-.242m9.345-8.334a2.126 2.126 0 0 0-.476-.095 48.64 48.64 0 0 0-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0 0 11.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155" />
+                  </svg>
+                </div>
+                <h4>Social Media</h4>
+                <p>Estrategias de contenido que aumentan tu presencia y engagement en redes sociales.</p>
+              </div>
+              <div class="card-service">
+                <div class="icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z" />
+                  </svg>
+                </div>
+                <h4>SEO & SEM</h4>
+                <p>Optimización en buscadores y estrategias de marketing digital para maximizar tu alcance.</p>
+              </div>
+              <div class="card-service">
+                <div class="icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m15.75 10.5 4.72-4.72a.75.75 0 0 1 1.28.53v11.38a.75.75 0 0 1-1.28.53l-4.72-4.72M4.5 18.75h9.75a2.25 2.25 0 0 0 2.25-2.25V7.5a2.25 2.25 0 0 0-2.25-2.25H4.5A2.25 2.25 0 0 0 2.25 7.5v9a2.25 2.25 0 0 0 2.25 2.25Z" />
+                  </svg>
+                </div>
+                <h4>Producción Audiovisual</h4>
+                <p>Creación de contenido visual de alto impacto: videos corporativos, animaciones y más.</p>
+              </div>
+              <div class="card-service">
+                <div class="icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.431l-1.003.827c-.293.241-.438.613-.43.992a7.723 7.723 0 0 1 0 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 0 1-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.431l1.004-.827c.292-.24.437-.613.43-.991a6.932 6.932 0 0 1 0-.255c.007-.38-.138-.751-.43-.992l-1.004-.827a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.086.22-.128.332-.183.582-.495.644-.869l.214-1.28Z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                  </svg>
+                </div>
+                <h4>Automatización de Marketing</h4>
+                <p>Optimiza tus procesos de marketing con herramientas de automatización inteligente.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ds-subsection">
+          <h3>Card — Testimonio</h3>
+          <div class="component-showcase">
+            <div class="card-testimonial">
+              <div class="stars">★★★★★</div>
+              <blockquote>"MonkieStudio transformó nuestra identidad de marca. El equipo entendió nuestra visión desde el primer día y superó nuestras expectativas."</blockquote>
+              <div class="author">
+                <div class="avatar">MR</div>
+                <div class="info">
+                  <div class="name">María Rodríguez</div>
+                  <div class="role">CEO, TechStart</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== STATS ==================== -->
+      <section class="ds-section" id="stats">
+        <div class="ds-section-header">
+          <div class="overline">Componentes</div>
+          <h2>Indicadores</h2>
+          <p>Prueba social. Números grandes con etiqueta. 4 columnas en desktop, 2 en mobile.</p>
+        </div>
+
+        <div class="component-showcase">
+          <div class="stats-grid">
+            <div class="stat-item">
+              <div class="number">120+</div>
+              <div class="label">Proyectos</div>
+            </div>
+            <div class="stat-item">
+              <div class="number">45+</div>
+              <div class="label">Clientes</div>
+            </div>
+            <div class="stat-item">
+              <div class="number">6</div>
+              <div class="label">Países</div>
+            </div>
+            <div class="stat-item">
+              <div class="number">4.8</div>
+              <div class="label">Satisfacción</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== TIMELINE ==================== -->
+      <section class="ds-section" id="timeline">
+        <div class="ds-section-header">
+          <div class="overline">Componentes</div>
+          <h2>Timeline</h2>
+          <p>Línea de tiempo vertical para la sección Nosotros. Alterna left/right en desktop.</p>
+        </div>
+
+        <div class="component-showcase">
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="dot"></div>
+              <div class="year">2021</div>
+              <div class="title">Fundación</div>
+              <div class="desc">MonkieStudio nace con la misión de ayudar a marcas a encontrar su voz.</div>
+            </div>
+            <div class="timeline-item">
+              <div class="dot"></div>
+              <div class="year">2022</div>
+              <div class="title">Primeros 20 clientes</div>
+              <div class="desc">Alcanzamos nuestra primera meta de crecimiento con proyectos en diversos sectores.</div>
+            </div>
+            <div class="timeline-item">
+              <div class="dot"></div>
+              <div class="year">2023</div>
+              <div class="title">Expansión internacional</div>
+              <div class="desc">Comenzamos a operar en 3 países de Latinoamérica con equipo remoto.</div>
+            </div>
+            <div class="timeline-item">
+              <div class="dot"></div>
+              <div class="year">2025</div>
+              <div class="title">120+ proyectos ejecutados</div>
+              <div class="desc">Más de 120 proyectos completados con una satisfacción del 98%.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== FORMULARIO ==================== -->
+      <section class="ds-section" id="formulario">
+        <div class="ds-section-header">
+          <div class="overline">Componentes</div>
+          <h2>Formulario</h2>
+          <p>Inputs, textarea y select. Estados: default, focus, error, success, disabled.</p>
+        </div>
+
+        <div class="ds-subsection">
+          <h3>Estados de input</h3>
+          <div class="component-showcase">
+            <div class="input-states">
+              <div class="input-state-row">
+                <span class="state-label">Default</span>
+                <input type="text" placeholder="Nombre completo" value="Juan Pérez">
+              </div>
+              <div class="input-state-row">
+                <span class="state-label">Focus</span>
+                <input type="text" placeholder="Nombre completo" value="Juan Pérez" style="border-color:var(--color-primary);box-shadow:0 0 0 3px rgba(45,49,66,0.15);outline:none">
+              </div>
+              <div class="input-state-row">
+                <span class="state-label">Error</span>
+                <input type="text" placeholder="Correo electrónico" value="correo-invalido" class="input-error">
+              </div>
+              <div class="input-state-row">
+                <span class="state-label">Success</span>
+                <input type="text" placeholder="Correo electrónico" value="cliente@empresa.com" class="input-success">
+              </div>
+              <div class="input-state-row">
+                <span class="state-label">Disabled</span>
+                <input type="text" placeholder="Campo deshabilitado" disabled>
+              </div>
+              <div class="input-state-row">
+                <span class="state-label">Select</span>
+                <select>
+                  <option>Selecciona un servicio</option>
+                  <option>Branding</option>
+                  <option>Desarrollo Web</option>
+                  <option>Social Media</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ds-subsection">
+          <h3>Formulario completo</h3>
+          <div class="component-showcase">
+            <form onsubmit="return false" style="max-width:600px">
+              <div class="form-grid">
+                <div class="form-group">
+                  <label for="ds-name">Nombre</label>
+                  <input type="text" id="ds-name" placeholder="Tu nombre">
+                </div>
+                <div class="form-group">
+                  <label for="ds-email">Correo</label>
+                  <input type="email" id="ds-email" placeholder="correo@ejemplo.com">
+                </div>
+                <div class="form-group">
+                  <label for="ds-company">Empresa</label>
+                  <input type="text" id="ds-company" placeholder="Tu empresa">
+                </div>
+                <div class="form-group">
+                  <label for="ds-service">Servicio</label>
+                  <select id="ds-service">
+                    <option>Selecciona un servicio</option>
+                    <option>Branding</option>
+                    <option>Desarrollo Web</option>
+                    <option>Social Media</option>
+                    <option>SEO & SEM</option>
+                  </select>
+                </div>
+                <div class="form-group full-width">
+                  <label for="ds-message">Mensaje</label>
+                  <textarea id="ds-message" placeholder="Cuéntanos sobre tu proyecto..."></textarea>
+                </div>
+                <div class="form-group full-width">
+                  <button class="btn btn-primary btn-lg" style="width:100%">Enviar mensaje</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== TAGS ==================== -->
+      <section class="ds-section" id="tags">
+        <div class="ds-section-header">
+          <div class="overline">Componentes</div>
+          <h2>Tags / Badges</h2>
+          <p>Pills con variantes de color. Usados para etiquetar servicios o categorías.</p>
+        </div>
+
+        <div class="component-showcase">
+          <div class="tags-group">
+            <span class="tag primary">Branding</span>
+            <span class="tag surface">Web</span>
+            <span class="tag success">SEO</span>
+            <span class="tag warning">Social</span>
+            <span class="tag border">Marketing</span>
+            <span class="tag primary">UI/UX</span>
+            <span class="tag surface">Contenido</span>
+            <span class="tag success">Analítica</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== SECTION TITLE ==================== -->
+      <section class="ds-section" id="section-title">
+        <div class="ds-section-header">
+          <div class="overline">Componentes</div>
+          <h2>Título de Sección</h2>
+          <p>Overline + H1/H2 + subtítulo opcional. Variantes centrado y alineado a la izquierda.</p>
+        </div>
+
+        <div class="ds-subsection">
+          <h3>Centrado</h3>
+          <div class="component-showcase">
+            <div class="section-title">
+              <div class="overline">Servicios</div>
+              <h2>Lo que hacemos</h2>
+              <p>Soluciones creativas e integrales para tu marca.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="ds-subsection">
+          <h3>Alineado a la izquierda</h3>
+          <div class="component-showcase">
+            <div class="section-title left">
+              <div class="overline">Nosotros</div>
+              <h2>Nuestra historia</h2>
+              <p>Conoce el camino que nos ha traído hasta aquí.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== HERO CON IMAGEN ==================== -->
+      <section class="ds-section" id="hero-preview">
+        <div class="ds-section-header">
+          <div class="overline">Visuales</div>
+          <h2>Hero con Imagen</h2>
+          <p>Hero de la landing con imagen de fondo, overlay degradado, contenido textual y barra de indicadores.</p>
+        </div>
+        <div class="component-showcase compact" style="padding:0;border:none">
+          <div class="hero-preview" style="background-image:url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1400&q=85')">
+            <div class="overlay"></div>
+            <div style="flex:1;display:flex;flex-direction:column">
+              <div class="hero-content">
+                <div class="overline">MonkieStudio</div>
+                <h2>Creamos marcas que trascienden</h2>
+                <p>Estrategia, diseño y tecnología para llevar tu marca al siguiente nivel.</p>
+                <button class="btn btn-primary btn-md">Solicitar Cotización</button>
+              </div>
+              <div class="hero-stats">
+                <span><strong>120+</strong> Proyectos</span>
+                <span><strong>45+</strong> Clientes</span>
+                <span><strong>98%</strong> Satisfacción</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== CARD CON IMAGEN ==================== -->
+      <section class="ds-section" id="card-image">
+        <div class="ds-section-header">
+          <div class="overline">Visuales</div>
+          <h2>Card con Imagen</h2>
+          <p>Variante de card para portafolio/proyectos. Imagen cover 4:3 con efecto zoom al hover.</p>
+        </div>
+        <div class="component-showcase compact">
+          <div class="card-grid" style="grid-template-columns:repeat(auto-fill, minmax(240px, 1fr))">
+            <div class="card-project">
+              <div class="project-image" style="background-image:url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&h=400&fit=crop&q=80')"></div>
+              <div class="project-body">
+                <span class="tag">Branding</span>
+                <h4>Rebranding TechCo</h4>
+                <p>Renovación completa de identidad corporativa para startup tecnológica.</p>
+              </div>
+            </div>
+            <div class="card-project">
+              <div class="project-image" style="background-image:url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600&h=400&fit=crop&q=80')"></div>
+              <div class="project-body">
+                <span class="tag">Web</span>
+                <h4>Plataforma Nexum</h4>
+                <p>Portal web responsivo con integración de API y dashboard analítico.</p>
+              </div>
+            </div>
+            <div class="card-project">
+              <div class="project-image" style="background-image:url('https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=600&h=400&fit=crop&q=80')"></div>
+              <div class="project-body">
+                <span class="tag">Social</span>
+                <h4>Campaña Engage</h4>
+                <p>Estrategia de redes sociales que aumentó el engagement en un 200%.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== CARRUSEL ==================== -->
+      <section class="ds-section" id="carousel">
+        <div class="ds-section-header">
+          <div class="overline">Visuales</div>
+          <h2>Carrusel</h2>
+          <p>Slider de imágenes con navegación prev/next, dots indicadores y auto-play. Sin dependencias externas.</p>
+        </div>
+        <div class="component-showcase compact" style="padding:0;border:none">
+          <div class="carousel" id="demoCarousel">
+            <div class="carousel-track" id="carouselTrack">
+              <div class="carousel-slide" style="background-image:url('https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=1200&h=600&fit=crop&q=85')">
+                <div class="slide-overlay">
+                  <h4>Colaboración en equipo</h4>
+                  <p>Trabajamos codo a codo con nuestros clientes.</p>
+                </div>
+              </div>
+              <div class="carousel-slide" style="background-image:url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=1200&h=600&fit=crop&q=85')">
+                <div class="slide-overlay">
+                  <h4>Espacios creativos</h4>
+                  <p>Nuestro estudio diseñado para la innovación.</p>
+                </div>
+              </div>
+              <div class="carousel-slide" style="background-image:url('https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1200&h=600&fit=crop&q=85')">
+                <div class="slide-overlay">
+                  <h4>Estrategia digital</h4>
+                  <p>Cada proyecto comienza con un plan sólido.</p>
+                </div>
+              </div>
+              <div class="carousel-slide" style="background-image:url('https://images.unsplash.com/photo-1522542550221-31fd19575a2d?w=1200&h=600&fit=crop&q=85')">
+                <div class="slide-overlay">
+                  <h4>De la idea al resultado</h4>
+                  <p>Transformamos conceptos en soluciones reales.</p>
+                </div>
+              </div>
+            </div>
+            <button class="carousel-btn prev" id="carouselPrev">&#8249;</button>
+            <button class="carousel-btn next" id="carouselNext">&#8250;</button>
+            <div class="carousel-dots" id="carouselDots"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== SECCIÓN CTA ==================== -->
+      <section class="ds-section" id="cta-section">
+        <div class="ds-section-header">
+          <div class="overline">Visuales</div>
+          <h2>Sección CTA</h2>
+          <p>Sección promocional full-width con imagen de fondo, overlay y llamado a la acción centrado.</p>
+        </div>
+        <div class="component-showcase compact" style="padding:0;border:none">
+          <div class="cta-section-preview" style="background-image:url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1400&q=85')">
+            <div class="overlay"></div>
+            <div class="cta-content">
+              <h3>¿Listo para empezar?</h3>
+              <p>Cuéntanos sobre tu proyecto y te enviaremos una propuesta en 48 horas.</p>
+              <button class="btn btn-primary btn-md">Contáctanos</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== ACORDEÓN ==================== -->
+      <section class="ds-section" id="accordion">
+        <div class="ds-section-header">
+          <div class="overline">Componentes</div>
+          <h2>Acordeón</h2>
+          <p>Componente plegable para mostrar/ocultar contenido. Ideal para FAQs y desglose de servicios.</p>
+        </div>
+
+        <div class="component-showcase compact">
+          <div class="accordion">
+            <div class="accordion-item open">
+              <button class="accordion-header" aria-expanded="true">
+                <span>¿Qué incluye un servicio de branding?</span>
+                <svg class="icon" viewBox="0 0 20 20" fill="currentColor" width="20" height="20">
+                  <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z"/>
+                </svg>
+              </button>
+              <div class="accordion-body">
+                <div class="accordion-body-inner">
+                  Incluye investigación de mercado, definición de personalidad de marca, diseño de logotipo, paleta de colores, tipografía, guía de uso y aplicaciones básicas. Todo documentado en un manual de marca.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-header" aria-expanded="false">
+                <span>¿Cuánto tiempo toma desarrollar un sitio web?</span>
+                <svg class="icon" viewBox="0 0 20 20" fill="currentColor" width="20" height="20">
+                  <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z"/>
+                </svg>
+              </button>
+              <div class="accordion-body">
+                <div class="accordion-body-inner">
+                  Dependiendo de la complejidad, un sitio web corporativo puede tomar de 3 a 6 semanas. Proyectos más complejos con funcionalidades a medida pueden extenderse de 8 a 12 semanas.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-header" aria-expanded="false">
+                <span>¿Ofrecen servicios de marketing digital?</span>
+                <svg class="icon" viewBox="0 0 20 20" fill="currentColor" width="20" height="20">
+                  <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z"/>
+                </svg>
+              </button>
+              <div class="accordion-body">
+                <div class="accordion-body-inner">
+                  Sí, trabajamos SEO técnico y de contenido, SEM (Google Ads), estrategia de redes sociales, email marketing y automatización. Cada campaña se mide y optimiza en tiempo real.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== TESTIMONIOS CARRUSEL ==================== -->
+      <section class="ds-section" id="carousel-testimonios">
+        <div class="ds-section-header">
+          <div class="overline">Visuales</div>
+          <h2>Carrusel Testimonios</h2>
+          <p>Carrusel de testimonios con navegación prev/next, dots indicadores y auto-play. Combina el card-testimonial con funcionalidad de slider.</p>
+        </div>
+        <div class="component-showcase compact" style="padding:0;border:none">
+          <div class="carousel-testimonios" id="carouselTestimonios">
+            <div class="carousel-track" id="carouselTestimoniosTrack">
+              <div class="carousel-slide">
+                <div class="card-testimonial">
+                  <div class="stars">★★★★★</div>
+                  <blockquote>"MonkieStudio transformó nuestra identidad de marca. El equipo entendió nuestra visión desde el primer día y superó nuestras expectativas. El resultado fue una marca coherente y profesional que nos abrió nuevas puertas."</blockquote>
+                  <div class="author">
+                    <div class="avatar">MR</div>
+                    <div class="info">
+                      <div class="name">María Rodríguez</div>
+                      <div class="role">CEO, TechStart</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-slide">
+                <div class="card-testimonial">
+                  <div class="stars">★★★★★</div>
+                  <blockquote>"Su enfoque en la estrategia digital nos ayudó a duplicar nuestras ventas online en solo 3 meses. El equipo de MonkieStudio es altamente profesional y entregó resultados medibles desde la primera campaña."</blockquote>
+                  <div class="author">
+                    <div class="avatar">CL</div>
+                    <div class="info">
+                      <div class="name">Carlos López</div>
+                      <div class="role">Director Marketing, InnovaCorp</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-slide">
+                <div class="card-testimonial">
+                  <div class="stars">★★★★★</div>
+                  <blockquote>"Trabajar con MonkieStudio fue una experiencia excepcional. No solo crearon un sitio web hermoso, sino que también optimizaron toda nuestra presencia digital. Altamente recomendados para cualquier proyecto."</blockquote>
+                  <div class="author">
+                    <div class="avatar">AG</div>
+                    <div class="info">
+                      <div class="name">Ana Gómez</div>
+                      <div class="role">Fundadora, GreenLife</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-slide">
+                <div class="card-testimonial">
+                  <div class="stars">★★★★★</div>
+                  <blockquote>"La campaña de Google Ads que diseñaron nos generó un ROI del 300% en el primer trimestre. Su métodología basada en datos marca la diferencia."</blockquote>
+                  <div class="author">
+                    <div class="avatar">PM</div>
+                    <div class="info">
+                      <div class="name">Pedro Martínez</div>
+                      <div class="role">Gerente Comercial, DigiStore</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-slide">
+                <div class="card-testimonial">
+                  <div class="stars">★★★★★</div>
+                  <blockquote>"El equipo de MonkieStudio redefinió nuestra estrategia de redes sociales. Logramos un crecimiento del 200% en engagement en menos de 2 meses."</blockquote>
+                  <div class="author">
+                    <div class="avatar">LR</div>
+                    <div class="info">
+                      <div class="name">Laura Rivas</div>
+                      <div class="role">CMO, BrandUp</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-slide">
+                <div class="card-testimonial">
+                  <div class="stars">★★★★★</div>
+                  <blockquote>"Profesionalismo y creatividad en cada entrega. La producción audiovisual superó lo que imaginábamos. Sin duda nuestro partner creativo de confianza."</blockquote>
+                  <div class="author">
+                    <div class="avatar">JS</div>
+                    <div class="info">
+                      <div class="name">Jorge Salinas</div>
+                      <div class="role">Director, CreativLab</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button class="carousel-btn prev" id="carouselTestimoniosPrev">&#8249;</button>
+            <button class="carousel-btn next" id="carouselTestimoniosNext">&#8250;</button>
+            <div class="carousel-dots" id="carouselTestimoniosDots"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== FOOTER ==================== -->
+      <section class="ds-section" id="footer">
+        <div class="ds-section-header">
+          <div class="overline">Componentes</div>
+          <h2>Footer</h2>
+          <p>4 columnas: logo + descripción, navegación, servicios, contacto + redes sociales.</p>
+        </div>
+
+        <div class="component-showcase compact">
+          <div class="footer-mock">
+            <div class="footer-grid">
+              <div class="footer-col">
+                <div class="footer-logo">
+                  <svg data-name="Layer 1" viewBox="0 0 280.1 63.02" fill="currentColor">
+                    <path d="M105.5,28.62c-.5,0-.9,0-1.4.1-4.8-14.6-17.6-25.6-33.3-27.6s-8.6-.7-11.7-.7-9.9.5-11.8.7c-8.9,1.2-16.8,5.4-22.9,11.4-4.4,4.4-7.8,9.9-9.8,16h-1.2c-7.4,0-13.4,6-13.4,13.4s6,13.4,13.4,13.4,1.2,0,1.9-.1c1,2.8,2.4,5.4,4,7.8h14.4c-5-2.8-8.4-7.9-8.9-13.9v-1.4c0-2.9.7-5.6,2-8,2.9-5.6,8.8-9.5,15.6-9.5s11.7,3.2,14.8,8.1c1.3,2,4.2,2,5.5,0,3.1-4.9,8.6-8.1,14.8-8.1s12.7,3.9,15.6,9.6c1.2,2.4,1.9,5.1,1.9,8s0,.9,0,1.3c-.5,6-3.9,11.2-8.9,13.9h13.6c1.6-2.5,3-5.1,4-7.9.8.2,1.7.2,2.5.2,8.1,0,14.5-7.1,13.3-15.4-1-6.7-7.1-11.7-13.8-11.3h-.2ZM6.9,42.02c0-3.5,2.8-6.4,6.3-6.6-.3,1.8-.4,3.7-.4,5.6s.2,5.1.7,7.5c-3.6,0-6.5-3-6.5-6.6l.1.1ZM106.1,48.62h-.7c.5-2.4.7-4.9.7-7.5s-.1-3.8-.4-5.6h.4c3.7,0,6.6,3,6.6,6.6s-2.9,6.6-6.6,6.6v-.1Z"/>
+                    <path d="M41,45.52c-3,0-5.4,2.4-5.4,5.4s2.4,5.4,5.4,5.4,5.4-2.4,5.4-5.4-2.4-5.4-5.4-5.4Z"/>
+                    <path d="M78.6,45.52c-3,0-5.4,2.4-5.4,5.4s2.4,5.4,5.4,5.4,5.4-2.4,5.4-5.4-2.4-5.4-5.4-5.4Z"/>
+                    <path d="M139.4,6.12h8.7l7.1,8.9h.4l7.1-8.9h8.7v28.1h-8.8v-16.2h-.4l-6.5,8.5h-.4l-6.5-8.5h-.4v16.2h-8.8V6.12h-.2Z"/>
+                    <path d="M174.3,20.12c0-8.9,6.6-14.6,15.1-14.6s15.1,5.7,15.1,14.6-6.6,14.7-15.1,14.7-15.1-5.4-15.1-14.7ZM195,20.12c0-3.5-2.2-5.9-5.7-5.9s-5.7,2.5-5.7,5.9,2.2,6,5.7,6,5.7-2.5,5.7-6Z"/>
+                    <path d="M207.5,6.12h9.6l10.4,15.2h.3V6.12h8.6v28.1h-9.6l-10.3-15.2h-.3v15.2h-8.6V6.12h-.1Z"/>
+                    <path d="M253.7,24.62h-.7l-3.3,3.8v5.9h-9.2V6.12h9.2v10h.6l8.3-10h10.8l-9.7,11,9.1,17.1h-10l-5-9.6h-.1Z"/>
+                    <path d="M270.9,6.12h9.2v28.1h-9.2V6.12Z"/>
+                    <path d="M140.3,59.72c-.3,0-.5,0-.6-.1-.1,0-.2-.2-.3-.3s0-.3,0-.5v-12.8c0-.4,0-.6.2-.7s.4-.2.8-.2h9c.1,0,.2.1.3.3,0,.1.1.4.1.6s0,.5-.1.6c0,.1-.2.2-.3.3h-8.1v4.4h5.8c.1,0,.2.1.3.3,0,.1.1.3.1.6s0,.4-.1.6c0,.1-.2.2-.3.2h-5.7v4.8h8.1c.1,0,.2.1.3.3,0,.1.1.3.1.6s0,.5-.1.6c0,.1-.2.2-.3.3h-9l-.2.1Z"/>
+                    <path d="M165.6,59.92c-.5,0-1,0-1.5-.2-.5-.1-.9-.3-1.3-.5-.4-.2-.7-.5-1-.7s-.5-.5-.7-.8c-.1-.2-.2-.4-.3-.6v-.4c0-.1.2-.3.4-.5s.4-.2.6-.2.3,0,.5.2.3.3.5.5c.4.5.8.8,1.3,1s1,.3,1.5.3,1.2,0,1.7-.3c.5-.2.9-.4,1.2-.8.3-.3.4-.8.4-1.3s-.1-.8-.3-1.1-.5-.6-.9-.8-.8-.4-1.3-.6c-.5-.2-.9-.3-1.4-.5-.4-.1-.7-.3-1.1-.4-.4-.2-.7-.3-1-.5s-.6-.5-.8-.7c-.2-.3-.4-.6-.6-1s-.2-.8-.2-1.3c0-.8.2-1.5.6-2s.9-1,1.6-1.4c.7-.3,1.4-.5,2.3-.5s1,0,1.5.1c.4,0,.8.2,1.2.4.3.2.6.3.9.5.2.2.4.3.5.5.3.3.4.5.4.7s0,.4-.3.7c-.2.3-.5.4-.7.4s-.4,0-.7-.3-.5-.5-.8-.7-.6-.3-.9-.3h-1.1c-.4,0-.7,0-1,.1-.3,0-.6.2-.8.4s-.4.4-.5.7-.2.6-.2.9.1.7.3,1,.5.5.8.7.7.3,1.1.5c.4.1.9.3,1.3.4.5.2,1,.3,1.5.6.5.2.9.5,1.3.8.4.3.7.7.9,1.2s.4,1.1.4,1.8-.1,1.3-.4,1.9c-.3.5-.7,1-1.1,1.3-.5.4-1,.6-1.6.8-.6.2-1.3.3-1.9.3l-.3-.3Z"/>
+                    <path d="M193.1,45.02h.5c.1,0,.2.1.3.3v.6c0,.3,0,.4-.1.6,0,.1-.2.2-.3.2h-4.9v12.5c0,.1-.1.2-.3.3-.1,0-.3.1-.6.1s-.5,0-.6-.1c-.1,0-.2-.2-.3-.3s0-.3,0-.5v-12h-4.9c-.2,0-.2-.1-.3-.2,0-.1-.1-.3-.1-.6s0-.4.1-.6.2-.2.3-.3h11.2Z"/>
+                    <path d="M211.3,59.82c-.9,0-1.8-.2-2.5-.5s-1.4-.8-1.9-1.4-.9-1.3-1.2-2.1-.4-1.7-.4-2.7v-7.6c0-.1.1-.2.3-.3.1,0,.3-.1.6-.1s.5,0,.6.1c.1,0,.2.2.3.3v7.6c0,.9.2,1.8.5,2.5s.8,1.3,1.4,1.7c.6.4,1.4.6,2.3.6s1.6-.2,2.2-.6c.6-.4,1.1-.9,1.4-1.7.3-.7.5-1.6.5-2.6v-7.7c0-.1.1-.2.3-.3s.3-.1.6-.1.5,0,.6.1c.1,0,.2.2.3.3v7.7c0,1-.1,1.9-.4,2.7-.3.8-.7,1.5-1.2,2.1s-1.2,1.1-1.9,1.4-1.6.5-2.6.5l.2.1Z"/>
+                    <path d="M230.2,59.72c-.2,0-.4,0-.6-.1-.1,0-.2-.2-.3-.3v-13.8c0-.1.1-.3.3-.3.1,0,.3-.1.6-.1h4.2c1,0,2,.2,2.8.5.9.3,1.6.8,2.2,1.5.6.6,1.1,1.4,1.4,2.3.3.9.5,1.9.5,3s-.2,2.2-.5,3.1c-.3.9-.8,1.7-1.4,2.3-.6.6-1.3,1.1-2.2,1.5s-1.8.5-2.9.5h-4.1v-.1ZM231.2,57.82h3.2c1,0,1.9-.2,2.7-.7.7-.4,1.3-1.1,1.7-1.9.4-.8.6-1.8.6-2.9s-.2-2.1-.6-2.9-1-1.4-1.7-1.9c-.8-.4-1.6-.7-2.7-.7h-3.2v11Z"/>
+                    <path d="M253.9,59.72c-.3,0-.5,0-.6-.1-.1,0-.2-.2-.3-.3s0-.3,0-.5v-13.3c0-.1.1-.3.3-.3.1,0,.3-.1.6-.1s.5,0,.6.1c.1,0,.2.2.3.3v13.8c0,.1-.1.2-.3.3-.1,0-.3.1-.6.1Z"/>
+                    <path d="M273.1,59.82c-1,0-1.9-.2-2.8-.6s-1.7-.9-2.3-1.6c-.7-.7-1.2-1.5-1.6-2.4s-.6-1.8-.6-2.9.2-2,.5-2.9c.4-.9.9-1.7,1.5-2.4.7-.7,1.4-1.2,2.3-1.6.9-.4,1.8-.6,2.7-.6s2,.2,2.8.6c.9.4,1.6.9,2.3,1.6.7.7,1.2,1.5,1.6,2.4s.6,1.9.6,2.9-.2,2-.6,2.9-.9,1.7-1.5,2.4c-.6.7-1.4,1.2-2.2,1.6-.9.4-1.8.6-2.7.6h0ZM272.9,57.92c.7,0,1.4-.1,2.1-.4.6-.3,1.2-.7,1.7-1.2s.9-1.1,1.1-1.8.4-1.4.4-2.2-.1-1.5-.4-2.1-.7-1.3-1.1-1.8c-.5-.5-1-.9-1.7-1.2-.6-.3-1.3-.4-2-.4s-1.4.1-2,.4c-.6.3-1.2.7-1.7,1.2s-.9,1.1-1.1,1.8-.4,1.4-.4,2.2.1,1.5.4,2.2.7,1.3,1.1,1.8c.5.5,1,.9,1.7,1.2.6.3,1.3.4,2,.4l-.1-.1Z"/>
+                  </svg>
+                </div>
+                <p>Somos una agencia creativa que transforma marcas a través de estrategias de marketing innovadoras y diseño de alto impacto.</p>
+              </div>
+              <div class="footer-col">
+                <h5>Navegación</h5>
+                <a href="#">Inicio</a>
+                <a href="#">Nosotros</a>
+                <a href="#">Servicios</a>
+                <a href="#">Clientes</a>
+                <a href="#">Contacto</a>
+              </div>
+              <div class="footer-col">
+                <h5>Servicios</h5>
+                <a href="#">Branding</a>
+                <a href="#">Desarrollo Web</a>
+                <a href="#">Social Media</a>
+                <a href="#">SEO & SEM</a>
+              </div>
+              <div class="footer-col">
+                <h5>Contacto</h5>
+                <p>📍 Lima, Perú</p>
+                <p>✉ hola@monkiestudio.com</p>
+                <p>☎ +51 999 999 999</p>
+              </div>
+            </div>
+            <div class="footer-bottom">
+              <span>© 2026 MonkieStudio. Todos los derechos reservados.</span>
+              <span>
+                <a href="#" style="text-decoration:none;display:inline">Política de Privacidad</a>
+                &nbsp;·&nbsp;
+                <a href="#" style="text-decoration:none;display:inline">Términos</a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== ACCESIBILIDAD ==================== -->
+      <section class="ds-section" id="accesibilidad">
+        <div class="ds-section-header">
+          <div class="overline">Recursos</div>
+          <h2>Accesibilidad</h2>
+          <p>Verificación de contraste WCAG AA para todos los pares de color del sistema.</p>
+        </div>
+
+        <div class="component-showcase compact">
+          <table class="a11y-table" id="a11yTable">
+            <thead>
+              <tr>
+                <th>Combinación</th>
+                <th>Fondo</th>
+                <th>Texto</th>
+                <th>Ratio</th>
+                <th>AA Normal</th>
+                <th>AA Grande</th>
+                <th>AAA</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Texto sobre bg</td><td>Bg</td><td>Primary</td><td class="ratio-cell">—</td><td class="pass">—</td><td class="pass">—</td><td class="pass">—</td></tr>
+              <tr><td>Texto sobre card</td><td>Card</td><td>Primary</td><td class="ratio-cell">—</td><td class="pass">—</td><td class="pass">—</td><td class="pass">—</td></tr>
+              <tr><td>Texto sobre surface</td><td>Surface</td><td>Primary</td><td class="ratio-cell">—</td><td class="pass">—</td><td class="pass">—</td><td class="pass">—</td></tr>
+              <tr><td>Muted sobre bg</td><td>Bg</td><td>Muted</td><td class="ratio-cell">—</td><td class="check">—</td><td class="check">—</td><td class="check">—</td></tr>
+              <tr><td>Primary sobre card</td><td>Card</td><td>Primary</td><td class="ratio-cell">—</td><td class="pass">—</td><td class="pass">—</td><td class="pass">—</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="ds-desc"><strong>Nota:</strong> Los ratios de contraste se calculan automáticamente al cargar la página. Todos los pares principales superan WCAG AA.</p>
+      </section>
+
+    </div>
+  </div>
+
+  <div class="toast" id="toast">¡Copiado!</div>
+
+  <script>
+    // ===== THEME TOGGLE =====
+    const html = document.documentElement;
+    const themeBtn = document.getElementById('themeToggle');
+
+    function getPreferredTheme() {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+
+    function setTheme(theme) {
+      html.setAttribute('data-theme', theme);
+      themeBtn.textContent = theme === 'dark' ? '\u2600\uFE0F' : '\uD83C\uDF19';
+      localStorage.setItem('theme', theme);
+    }
+
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      setTheme(savedTheme);
+    } else {
+      setTheme(getPreferredTheme());
+    }
+
+    themeBtn.addEventListener('click', () => {
+      const current = html.getAttribute('data-theme');
+      setTheme(current === 'dark' ? 'light' : 'dark');
+    });
+
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+      if (!localStorage.getItem('theme')) {
+        setTheme(e.matches ? 'dark' : 'light');
+      }
+    });
+
+    // ===== SIDEBAR =====
+    const sidebar = document.getElementById('sidebar');
+    const sidebarToggle = document.getElementById('sidebarToggle');
+    const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+    sidebarToggle.addEventListener('click', () => {
+      sidebar.classList.toggle('open');
+      sidebarOverlay.classList.toggle('open');
+    });
+
+    sidebarOverlay.addEventListener('click', () => {
+      sidebar.classList.remove('open');
+      sidebarOverlay.classList.remove('open');
+    });
+
+    // ===== SCROLL SPY =====
+    const sections = document.querySelectorAll('.ds-section');
+    const navLinks = document.querySelectorAll('.sidebar-nav a');
+
+    function updateActiveLink() {
+      let current = '';
+      sections.forEach(section => {
+        const top = section.offsetTop - 120;
+        if (window.scrollY >= top) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + current) {
+          link.classList.add('active');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', updateActiveLink);
+    updateActiveLink();
+
+    // Close sidebar on link click (mobile)
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth <= 768) {
+          sidebar.classList.remove('open');
+          sidebarOverlay.classList.remove('open');
+        }
+      });
+    });
+
+    // ===== COPY HEX =====
+    function copyHex(hex) {
+      const clean = hex.replace(/\s*\/.*$/, '').trim();
+      navigator.clipboard.writeText(clean).then(() => {
+        const toast = document.getElementById('toast');
+        toast.textContent = '\u2713 ' + clean + ' copiado';
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2000);
+      }).catch(() => {
+        // fallback
+        const toast = document.getElementById('toast');
+        toast.textContent = '\u2713 Copiado';
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2000);
+      });
+    }
+
+    // ===== CONTRAST RATIO CALCULATOR =====
+    function hexToRgb(hex) {
+      const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+      return result ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16)
+      } : { r: 0, g: 0, b: 0 };
+    }
+
+    function luminance(r, g, b) {
+      const a = [r, g, b].map(v => {
+        v /= 255;
+        return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+      });
+      return a[0] * 0.2126 + a[1] * 0.7152 + a[2] * 0.0722;
+    }
+
+    function contrastRatio(hex1, hex2) {
+      const c1 = hexToRgb(hex1);
+      const c2 = hexToRgb(hex2);
+      const l1 = luminance(c1.r, c1.g, c1.b);
+      const l2 = luminance(c2.r, c2.g, c2.b);
+      const lighter = Math.max(l1, l2);
+      const darker = Math.min(l1, l2);
+      return (lighter + 0.05) / (darker + 0.05);
+    }
+
+    function updateContrastTable() {
+      const isDark = html.getAttribute('data-theme') === 'dark';
+      const bg = isDark ? '#1A1A2E' : '#FAFAFA';
+      const card = isDark ? '#383B50' : '#FFFFFF';
+      const surface = isDark ? '#2D3142' : '#D8D5DB';
+      const text = isDark ? '#E8E5EB' : '#2D3142';
+      const muted = isDark ? '#ADACB5' : '#6B6A75';
+
+      const pairs = [
+        [bg, text, 'Texto sobre bg'],
+        [card, text, 'Texto sobre card'],
+        [surface, text, 'Texto sobre surface'],
+        [bg, muted, 'Muted sobre bg'],
+        [card, text, 'Primary sobre card']
+      ];
+
+      const rows = document.querySelectorAll('#a11yTable tbody tr');
+      pairs.forEach((pair, i) => {
+        const ratio = contrastRatio(pair[0], pair[1]);
+        const cells = rows[i].querySelectorAll('td');
+        cells[3].textContent = ratio.toFixed(2) + ':1';
+        cells[4].textContent = ratio >= 4.5 ? 'Pasa' : 'Falla';
+        cells[4].className = ratio >= 4.5 ? 'pass' : 'fail';
+        cells[5].textContent = ratio >= 3 ? 'Pasa' : 'Falla';
+        cells[5].className = ratio >= 3 ? 'pass' : 'fail';
+        cells[6].textContent = ratio >= 7 ? 'Pasa' : 'Falla';
+        cells[6].className = ratio >= 7 ? 'pass' : 'fail';
+      });
+    }
+
+    // Update contrast table on load and theme change
+    updateContrastTable();
+    themeBtn.addEventListener('click', () => {
+      setTimeout(updateContrastTable, 50);
+    });
+
+    // Update functional colors in swatches
+    document.addEventListener('DOMContentLoaded', () => {
+      const computeStyle = getComputedStyle(document.body);
+      const success = computeStyle.getPropertyValue('--color-success').trim();
+      const error = computeStyle.getPropertyValue('--color-error').trim();
+      const warning = computeStyle.getPropertyValue('--color-warning').trim();
+      if (success) {
+        document.getElementById('successHex').textContent = success;
+        document.getElementById('errorHex').textContent = error;
+        document.getElementById('warningHex').textContent = warning;
+      }
+    });
+
+    // ===== CAROUSEL =====
+    (function() {
+      const track = document.getElementById('carouselTrack');
+      const prev = document.getElementById('carouselPrev');
+      const next = document.getElementById('carouselNext');
+      const dotsContainer = document.getElementById('carouselDots');
+      if (!track) return;
+      const slides = track.querySelectorAll('.carousel-slide');
+      let current = 0;
+      let interval;
+
+      slides.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+        dot.setAttribute('aria-label', 'Ir al slide ' + (i + 1));
+        dot.addEventListener('click', () => goTo(i));
+        dotsContainer.appendChild(dot);
+      });
+
+      const dots = dotsContainer.querySelectorAll('.carousel-dot');
+
+      function goTo(index) {
+        current = index;
+        track.style.transform = 'translateX(-' + (current * 100) + '%)';
+        dots.forEach((d, i) => d.classList.toggle('active', i === current));
+      }
+
+      function nextSlide() { goTo((current + 1) % slides.length); }
+      function prevSlide() { goTo((current - 1 + slides.length) % slides.length); }
+
+      if (prev) prev.addEventListener('click', prevSlide);
+      if (next) next.addEventListener('click', nextSlide);
+
+      const carousel = document.getElementById('demoCarousel');
+      function startAutoplay() { interval = setInterval(nextSlide, 4000); }
+      function stopAutoplay() { clearInterval(interval); }
+
+      if (carousel) {
+        carousel.addEventListener('mouseenter', stopAutoplay);
+        carousel.addEventListener('mouseleave', startAutoplay);
+        carousel.addEventListener('focusin', stopAutoplay);
+        carousel.addEventListener('focusout', startAutoplay);
+      }
+
+      startAutoplay();
+    })();
+
+    // ===== ACCORDION =====
+    document.querySelectorAll('.accordion-item.open').forEach(item => {
+      const body = item.querySelector('.accordion-body');
+      body.style.setProperty('--accordion-height', body.scrollHeight + 'px');
+    });
+
+    document.querySelectorAll('.accordion-header').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.accordion-item');
+        const body = item.querySelector('.accordion-body');
+        const isOpen = item.classList.contains('open');
+        if (!isOpen) {
+          body.style.setProperty('--accordion-height', body.scrollHeight + 'px');
+          item.classList.add('open');
+          btn.setAttribute('aria-expanded', 'true');
+        } else {
+          item.classList.remove('open');
+          btn.setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+
+    // ===== TESTIMONIAL CAROUSEL =====
+    (function() {
+      const track = document.getElementById('carouselTestimoniosTrack');
+      const prev = document.getElementById('carouselTestimoniosPrev');
+      const next = document.getElementById('carouselTestimoniosNext');
+      const dotsContainer = document.getElementById('carouselTestimoniosDots');
+      if (!track) return;
+      const slides = track.querySelectorAll('.carousel-slide');
+      let current = 0;
+      let interval;
+      let dots;
+
+      function getSlidesPerView() {
+        const w = window.innerWidth;
+        if (w < 576) return 1;
+        if (w < 992) return 2;
+        return 3;
+      }
+
+      function getMax() {
+        return Math.max(0, slides.length - getSlidesPerView());
+      }
+
+      function rebuildDots() {
+        dotsContainer.innerHTML = '';
+        const count = getMax() + 1;
+        if (count < 2) { dots = []; return; }
+        for (let i = 0; i < count; i++) {
+          const dot = document.createElement('button');
+          dot.className = 'carousel-dot' + (i === current ? ' active' : '');
+          dot.setAttribute('aria-label', 'Ir al grupo ' + (i + 1));
+          dot.addEventListener('click', () => goTo(i));
+          dotsContainer.appendChild(dot);
+        }
+        dots = dotsContainer.querySelectorAll('.carousel-dot');
+      }
+
+      function goTo(index) {
+        current = Math.min(Math.max(index, 0), getMax());
+        const slideWidth = slides[0].offsetWidth;
+        track.style.transform = 'translateX(-' + (current * slideWidth) + 'px)';
+        if (dots) dots.forEach((d, i) => d.classList.toggle('active', i === current));
+      }
+
+      function nextSlide() { goTo(current + 1); }
+      function prevSlide() { goTo(current - 1); }
+
+      rebuildDots();
+      if (prev) prev.addEventListener('click', prevSlide);
+      if (next) next.addEventListener('click', nextSlide);
+
+      const carousel = document.getElementById('carouselTestimonios');
+      function startAutoplay() { interval = setInterval(nextSlide, 4000); }
+      function stopAutoplay() { clearInterval(interval); }
+
+      if (carousel) {
+        carousel.addEventListener('mouseenter', stopAutoplay);
+        carousel.addEventListener('mouseleave', startAutoplay);
+        carousel.addEventListener('focusin', stopAutoplay);
+        carousel.addEventListener('focusout', startAutoplay);
+      }
+
+      startAutoplay();
+
+      let resizeTimer;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+          rebuildDots();
+          goTo(current);
+        }, 200);
+      });
+    })();
+  </script>
+</body>
+</html>
