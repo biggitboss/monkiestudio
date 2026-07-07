@@ -1,64 +1,80 @@
 <!DOCTYPE html>
-<html lang="es" data-theme="light">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MonkieStudio — Agencia de Marketing & Diseño</title>
-  <meta name="description" content="Agencia creativa especializada en branding, desarrollo web, social media, SEO y producción audiovisual. Transformamos marcas.">
+  <title>MonkieStudio — Agencia de Marketing Digital</title>
+  <meta name="description" content="Agencia de marketing digital especializada en branding, desarrollo web, social media, Google Ads y más. Transformamos tu marca.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primario: '#082023',
+            'primario-50': '#EAF2F2',
+            'primario-100': '#D1E5E5',
+            'primario-200': '#A6CCCC',
+            'primario-300': '#78B2B2',
+            'primario-400': '#4D9999',
+            'primario-500': '#266F71',
+            'primario-600': '#082023',
+            'primario-700': '#061A1C',
+            'primario-800': '#051415',
+            'primario-900': '#030E0F',
+            'primario-950': '#020707',
+            'fondo-bg': '#F6F4F1',
+            secundario: '#BD1714',
+            'secundario-50': '#FEF2F2',
+            'secundario-100': '#FDE8E8',
+            'secundario-200': '#FBD5D5',
+            'secundario-300': '#F8B4B4',
+            'secundario-400': '#F28B8B',
+            'secundario-500': '#E85454',
+            'secundario-600': '#BD1714',
+            'secundario-700': '#A01412',
+            'secundario-800': '#7A0F0E',
+            'secundario-900': '#5E0B0A',
+            'secundario-950': '#3A0706',
+            tertiary: '#333333',
+            'tertiary-light': '#666666',
+            'tertiary-dark': '#1A1A1A',
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
   <link rel="stylesheet" href="css/landing.css">
 </head>
-<body>
+<body class="font-sans antialiased text-primario-950 bg-white">
 
   <a href="#main" class="skip-link">Ir al contenido principal</a>
 
   <!-- ===== HEADER ===== -->
-  <header class="header" role="banner">
-    <div class="header__inner">
-      <a href="#" class="header__logo" aria-label="MonkieStudio inicio">
-        <svg viewBox="0 0 280.1 63.02" fill="#fff">
-          <g>
-            <path d="M105.5,28.62c-.5,0-.9,0-1.4.1-4.8-14.6-17.6-25.6-33.3-27.6s-8.6-.7-11.7-.7-9.9.5-11.8.7c-8.9,1.2-16.8,5.4-22.9,11.4-4.4,4.4-7.8,9.9-9.8,16h-1.2c-7.4,0-13.4,6-13.4,13.4s6,13.4,13.4,13.4,1.2,0,1.9-.1c1,2.8,2.4,5.4,4,7.8h14.4c-5-2.8-8.4-7.9-8.9-13.9v-1.4c0-2.9.7-5.6,2-8,2.9-5.6,8.8-9.5,15.6-9.5s11.7,3.2,14.8,8.1c1.3,2,4.2,2,5.5,0,3.1-4.9,8.6-8.1,14.8-8.1s12.7,3.9,15.6,9.6c1.2,2.4,1.9,5.1,1.9,8s0,.9,0,1.3c-.5,6-3.9,11.2-8.9,13.9h13.6c1.6-2.5,3-5.1,4-7.9.8.2,1.7.2,2.5.2,8.1,0,14.5-7.1,13.3-15.4-1-6.7-7.1-11.7-13.8-11.3h-.2ZM6.9,42.02c0-3.5,2.8-6.4,6.3-6.6-.3,1.8-.4,3.7-.4,5.6s.2,5.1.7,7.5c-3.6,0-6.5-3-6.5-6.6l.1.1ZM106.1,48.62h-.7c.5-2.4.7-4.9.7-7.5s-.1-3.8-.4-5.6h.4c3.7,0,6.6,3,6.6,6.6s-2.9,6.6-6.6,6.6v-.1Z"/>
-            <path d="M41,45.52c-3,0-5.4,2.4-5.4,5.4s2.4,5.4,5.4,5.4,5.4-2.4,5.4-5.4-2.4-5.4-5.4-5.4Z"/>
-            <path d="M78.6,45.52c-3,0-5.4,2.4-5.4,5.4s2.4,5.4,5.4,5.4,5.4-2.4,5.4-5.4-2.4-5.4-5.4-5.4Z"/>
-          </g>
-          <g>
-            <path d="M139.4,6.12h8.7l7.1,8.9h.4l7.1-8.9h8.7v28.1h-8.8v-16.2h-.4l-6.5,8.5h-.4l-6.5-8.5h-.4v16.2h-8.8V6.12h-.2Z"/>
-            <path d="M174.3,20.12c0-8.9,6.6-14.6,15.1-14.6s15.1,5.7,15.1,14.6-6.6,14.7-15.1,14.7-15.1-5.4-15.1-14.7ZM195,20.12c0-3.5-2.2-5.9-5.7-5.9s-5.7,2.5-5.7,5.9,2.2,6,5.7,6,5.7-2.5,5.7-6Z"/>
-            <path d="M207.5,6.12h9.6l10.4,15.2h.3V6.12h8.6v28.1h-9.6l-10.3-15.2h-.3v15.2h-8.6V6.12h-.1Z"/>
-            <path d="M253.7,24.62h-.7l-3.3,3.8v5.9h-9.2V6.12h9.2v10h.6l8.3-10h10.8l-9.7,11,9.1,17.1h-10l-5-9.6h-.1Z"/>
-            <path d="M270.9,6.12h9.2v28.1h-9.2V6.12Z"/>
-          </g>
-          <g>
-            <path d="M140.3,59.72c-.3,0-.5,0-.6-.1-.1,0-.2-.2-.3-.3s0-.3,0-.5v-12.8c0-.4,0-.6.2-.7s.4-.2.8-.2h9c.1,0,.2.1.3.3,0,.1.1.4.1.6s0,.5-.1.6c0,.1-.2.2-.3.3h-8.1v4.4h5.8c.1,0,.2.1.3.3,0,.1.1.3.1.6s0,.4-.1.6c0,.1-.2.2-.3.2h-5.7v4.8h8.1c.1,0,.2.1.3.3,0,.1.1.3.1.6s0,.5-.1.6c0,.1-.2.2-.3.3h-9l-.2.1Z"/>
-            <path d="M165.6,59.92c-.5,0-1,0-1.5-.2-.5-.1-.9-.3-1.3-.5-.4-.2-.7-.5-1-.7s-.5-.5-.7-.8c-.1-.2-.2-.4-.3-.6v-.4c0-.1.2-.3.4-.5s.4-.2.6-.2.3,0,.5.2.3.3.5.5c.4.5.8.8,1.3,1s1,.3,1.5.3,1.2,0,1.7-.3c.5-.2.9-.4,1.2-.8.3-.3.4-.8.4-1.3s-.1-.8-.3-1.1-.5-.6-.9-.8-.8-.4-1.3-.6c-.5-.2-.9-.3-1.4-.5-.4-.1-.7-.3-1.1-.4-.4-.2-.7-.3-1-.5s-.6-.5-.8-.7c-.2-.3-.4-.6-.6-1s-.2-.8-.2-1.3c0-.8.2-1.5.6-2s.9-1,1.6-1.4c.7-.3,1.4-.5,2.3-.5s1,0,1.5.1c.4,0,.8.2,1.2.4.3.2.6.3.9.5.2.2.4.3.5.5.3.3.4.5.4.7s0,.4-.3.7c-.2.3-.5.4-.7.4s-.4,0-.7-.3-.5-.5-.8-.7-.6-.3-.9-.3h-1.1c-.4,0-.7,0-1,.1-.3,0-.6.2-.8.4s-.4.4-.5.7-.2.6-.2.9.1.7.3,1,.5.5.8.7.7.3,1.1.5c.4.1.9.3,1.3.4.5.2,1,.3,1.5.6.5.2.9.5,1.3.8.4.3.7.7.9,1.2s.4,1.1.4,1.8-.1,1.3-.4,1.9c-.3.5-.7,1-1.1,1.3-.5.4-1,.6-1.6.8-.6.2-1.3.3-1.9.3l-.3-.3Z"/>
-            <path d="M193.1,45.02h.5c.1,0,.2.1.3.3v.6c0,.3,0,.4-.1.6,0,.1-.2.2-.3.2h-4.9v12.5c0,.1-.1.2-.3.3-.1,0-.3.1-.6.1s-.5,0-.6-.1c-.1,0-.2-.2-.3-.3s0-.3,0-.5v-12h-4.9c-.2,0-.2-.1-.3-.2,0-.1-.1-.3-.1-.6s0-.4.1-.6.2-.2.3-.3h11.2Z"/>
-            <path d="M211.3,59.82c-.9,0-1.8-.2-2.5-.5s-1.4-.8-1.9-1.4-.9-1.3-1.2-2.1-.4-1.7-.4-2.7v-7.6c0-.1.1-.2.3-.3.1,0,.3-.1.6-.1s.5,0,.6.1c.1,0,.2.2.3.3v7.6c0,.9.2,1.8.5,2.5s.8,1.3,1.4,1.7c.6.4,1.4.6,2.3.6s1.6-.2,2.2-.6c.6-.4,1.1-.9,1.4-1.7.3-.7.5-1.6.5-2.6v-7.7c0-.1.1-.2.3-.3s.3-.1.6-.1.5,0,.6.1c.1,0,.2.2.3.3v7.7c0,1-.1,1.9-.4,2.7-.3.8-.7,1.5-1.2,2.1s-1.2,1.1-1.9,1.4-1.6.5-2.6.5l.2.1Z"/>
-            <path d="M230.2,59.72c-.2,0-.4,0-.6-.1-.1,0-.2-.2-.3-.3v-13.8c0-.1.1-.3.3-.3.1,0,.3-.1.6-.1h4.2c1,0,2,.2,2.8.5.9.3,1.6.8,2.2,1.5.6.6,1.1,1.4,1.4,2.3.3.9.5,1.9.5,3s-.2,2.2-.5,3.1c-.3.9-.8,1.7-1.4,2.3-.6.6-1.3,1.1-2.2,1.5s-1.8.5-2.9.5h-4.1v-.1ZM231.2,57.82h3.2c1,0,1.9-.2,2.7-.7.7-.4,1.3-1.1,1.7-1.9.4-.8.6-1.8.6-2.9s-.2-2.1-.6-2.9-1-1.4-1.7-1.9c-.8-.4-1.6-.7-2.7-.7h-3.2v11Z"/>
-            <path d="M253.9,59.72c-.3,0-.5,0-.6-.1-.1,0-.2-.2-.3-.3s0-.3,0-.5v-13.3c0-.1.1-.3.3-.3.1,0,.3-.1.6-.1s.5,0,.6.1c.1,0,.2.2.3.3v13.8c0,.1-.1.2-.3.3-.1,0-.3.1-.6.1Z"/>
-            <path d="M273.1,59.82c-1,0-1.9-.2-2.8-.6s-1.7-.9-2.3-1.6c-.7-.7-1.2-1.5-1.6-2.4s-.6-1.8-.6-2.9.2-2,.5-2.9c.4-.9.9-1.7,1.5-2.4.7-.7,1.4-1.2,2.3-1.6.9-.4,1.8-.6,2.7-.6s2,.2,2.8.6c.9.4,1.6.9,2.3,1.6.7.7,1.2,1.5,1.6,2.4s.6,1.9.6,2.9-.2,2-.6,2.9-.9,1.7-1.5,2.4c-.6.7-1.4,1.2-2.2,1.6-.9.4-1.8.6-2.7.6h0ZM272.9,57.92c.7,0,1.4-.1,2.1-.4.6-.3,1.2-.7,1.7-1.2s.9-1.1,1.1-1.8.4-1.4.4-2.2-.1-1.5-.4-2.1-.7-1.3-1.1-1.8c-.5-.5-1-.9-1.7-1.2-.6-.3-1.3-.4-2-.4s-1.4.1-2,.4c-.6.3-1.2.7-1.7,1.2s-.9,1.1-1.1,1.8-.4,1.4-.4,2.2.1,1.5.4,2.2.7,1.3,1.1,1.8c.5.5,1,.9,1.7,1.2.6.3,1.3.4,2,.4l-.1-.1Z"/>
-          </g>
-        </svg>
+  <header class="header fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-300 transition-shadow duration-300" role="banner">
+    <div class="max-w-7xl mx-auto px-6 h-[72px] flex items-center justify-between">
+      <a href="#" class="flex items-center flex-shrink-0" aria-label="MonkieStudio inicio">
+        <img src="images/logo.svg" alt="MonkieStudio" class="h-8 w-auto">
       </a>
 
-      <nav class="header__nav" role="navigation" aria-label="Navegación principal">
-        <a href="#hero">Inicio</a>
-        <a href="#servicios">Servicios</a>
-        <a href="#testimonios">Testimonios</a>
-        <a href="#contacto">Contacto</a>
+      <nav class="hidden lg:flex items-center gap-8" role="navigation" aria-label="Navegación principal">
+        <a href="#inicio" class="text-sm font-medium text-primario-950/70 hover:text-primario-600 transition-colors">Inicio</a>
+        <a href="#servicios" class="text-sm font-medium text-primario-950/70 hover:text-primario-600 transition-colors">Servicios</a>
+        <a href="#metodo" class="text-sm font-medium text-primario-950/70 hover:text-primario-600 transition-colors">Método</a>
+        <a href="#clientes" class="text-sm font-medium text-primario-950/70 hover:text-primario-600 transition-colors">Clientes</a>
+        <a href="#testimonios" class="text-sm font-medium text-primario-950/70 hover:text-primario-600 transition-colors">Testimonios</a>
       </nav>
 
-      <div class="header__actions">
-        <a href="#contacto" class="btn btn-header-cta btn-sm">Solicitar Cotización</a>
-        <button class="theme-toggle" id="themeToggle" aria-label="Cambiar modo oscuro/claro">
-          <svg class="theme-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path id="themeIconPath" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z"/>
-          </svg>
-        </button>
-        <button class="hamburger" id="hamburger" aria-label="Abrir menú de navegación">
+      <div class="flex items-center gap-4">
+        <a href="#agenda" class="hidden sm:inline-flex items-center justify-center h-10 px-5 rounded-xl bg-secundario-600 text-white text-sm font-semibold hover:bg-secundario-700 transition-all">Contacto</a>
+        <button id="hamburger" class="lg:hidden w-11 h-11 border-none bg-none cursor-pointer p-2 flex flex-col items-center justify-center gap-[5px] text-primario-950" aria-label="Abrir menú de navegación">
           <span class="hamburger__bar"></span>
           <span class="hamburger__bar"></span>
           <span class="hamburger__bar"></span>
@@ -67,256 +83,443 @@
     </div>
   </header>
 
-  <!-- ===== NAV OVERLAY (MOBILE) ===== -->
-  <div class="nav-overlay" id="navOverlay" role="dialog" aria-modal="true" aria-label="Menú de navegación">
-    <a href="#hero">Inicio</a>
-    <a href="#servicios">Servicios</a>
-    <a href="#testimonios">Testimonios</a>
-    <a href="#contacto">Contacto</a>
+  <!-- ===== MOBILE NAV OVERLAY ===== -->
+  <div id="navOverlay" class="hidden fixed inset-0 z-40 flex-col items-center justify-center gap-8 bg-white" role="dialog" aria-modal="true" aria-label="Menú de navegación">
+    <a href="#inicio" class="text-2xl font-semibold text-primario-950">Inicio</a>
+    <a href="#servicios" class="text-2xl font-semibold text-primario-950">Servicios</a>
+    <a href="#metodo" class="text-2xl font-semibold text-primario-950">Método</a>
+    <a href="#clientes" class="text-2xl font-semibold text-primario-950">Clientes</a>
+    <a href="#testimonios" class="text-2xl font-semibold text-primario-950">Testimonios</a>
   </div>
 
   <main id="main">
 
-    <!-- ===== 1. HERO SLIDER ===== -->
-    <section id="hero" class="hero-slider">
-      <div class="hero-slider__track" id="heroTrack">
-        <div class="hero-slide active">
-          <div class="hero-slide__bg" style="background-image:url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1600&q=85')"></div>
-          <div class="hero-slide__overlay"></div>
-          <div class="hero-slide__content">
-            <span class="overline">MonkieStudio</span>
-            <h1>Creamos marcas que trascienden</h1>
-            <p>Estrategia, diseño y tecnología para llevar tu marca al siguiente nivel. Somos tu aliado creativo en marketing digital.</p>
-            <a href="#contacto" class="btn btn-primary btn-lg">Solicitar Cotización</a>
-          </div>
-        </div>
-        <div class="hero-slide">
-          <div class="hero-slide__bg" style="background-image:url('https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=1600&q=85')"></div>
-          <div class="hero-slide__overlay"></div>
-          <div class="hero-slide__content">
-            <span class="overline">Marketing Digital</span>
-            <h1>Resultados que impulsan tu negocio</h1>
-            <p>Campañas basadas en datos que generan ROI medible. Maximiza tu alcance con estrategias digitales inteligentes.</p>
-            <a href="#contacto" class="btn btn-primary btn-lg">Solicitar Cotización</a>
-          </div>
-        </div>
-        <div class="hero-slide">
-          <div class="hero-slide__bg" style="background-image:url('https://images.unsplash.com/photo-1531538606174-0f90ff5dce83?w=1600&q=85')"></div>
-          <div class="hero-slide__overlay"></div>
-          <div class="hero-slide__content">
-            <span class="overline">Branding & Diseño</span>
-            <h1>Identidades de marca que conectan</h1>
-            <p>Creamos experiencias de marca memorables que reflejan tu esencia y conectan con tu audiencia de forma auténtica.</p>
-            <a href="#contacto" class="btn btn-primary btn-lg">Solicitar Cotización</a>
-          </div>
-        </div>
-      </div>
-
-      <button class="hero-slider__arrow hero-slider__arrow--prev" id="heroPrev" aria-label="Anterior">&#8249;</button>
-      <button class="hero-slider__arrow hero-slider__arrow--next" id="heroNext" aria-label="Siguiente">&#8250;</button>
-
-      <div class="hero-slider__dots" id="heroDots"></div>
-    </section>
-
-    <!-- ===== 2. SERVICIOS ===== -->
-    <section id="servicios" class="servicios">
-      <div class="container">
-        <div class="section-title fade-up">
-          <div class="overline">Servicios</div>
-          <h2>Lo que hacemos</h2>
-          <p>Soluciones creativas e integrales para tu marca.</p>
-        </div>
-
-        <div class="card-grid fade-up">
-          <div class="card-service">
-            <div class="card-service__icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.53 16.122a3 3 0 0 0-5.78 1.128 2.25 2.25 0 0 1-2.4 2.245 4.5 4.5 0 0 0 8.4-2.245c0-.399-.078-.78-.22-1.128Zm0 0a15.998 15.998 0 0 0 3.388-1.62m-5.043-.025a15.994 15.994 0 0 1 1.622-3.395m3.42 3.42a15.995 15.995 0 0 0 4.764-4.648l3.876-5.814a1.151 1.151 0 0 0-1.597-1.597L14.146 6.32a15.996 15.996 0 0 0-4.649 4.763m3.42 3.42a6.776 6.776 0 0 0-3.42-3.42"/></svg>
-            </div>
-            <h3>Branding</h3>
-            <p>Creamos identidades de marca memorables que conectan con tu audiencia y reflejan tu esencia.</p>
-          </div>
-          <div class="card-service">
-            <div class="card-service__icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5"/></svg>
-            </div>
-            <h3>Desarrollo Web</h3>
-            <p>Sitios web modernos, rápidos y responsivos construidos con las mejores tecnologías del mercado.</p>
-          </div>
-          <div class="card-service">
-            <div class="card-service__icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 0 1-.825-.242m9.345-8.334a2.126 2.126 0 0 0-.476-.095 48.64 48.64 0 0 0-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0 0 11.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155"/></svg>
-            </div>
-            <h3>Social Media</h3>
-            <p>Estrategias de contenido que aumentan tu presencia y engagement en redes sociales.</p>
-          </div>
-          <div class="card-service">
-            <div class="card-service__icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z"/></svg>
-            </div>
-            <h3>SEO & SEM</h3>
-            <p>Optimización en buscadores y estrategias de marketing digital para maximizar tu alcance.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== 3. STATS BANNER ===== -->
-    <section id="stats" class="stats-banner">
-      <div class="stats-banner__inner">
-        <div class="stat-item">
-          <div class="stat-number"><span class="counter" data-target="120">0</span>+</div>
-          <div class="stat-label">Proyectos</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number"><span class="counter" data-target="45">0</span>+</div>
-          <div class="stat-label">Clientes</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number"><span class="counter" data-target="6">0</span></div>
-          <div class="stat-label">Países</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number">4.8</div>
-          <div class="stat-label">Satisfacción</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== 4. CLIENTES ===== -->
-    <section id="clientes" class="clientes">
-      <div class="container">
-        <div class="section-title fade-up">
-          <div class="overline">Clientes</div>
-          <h2>Confían en nosotros</h2>
-          <p>Marcas que han confiado en nuestro trabajo.</p>
-        </div>
-
-        <div class="clientes-carousel fade-up">
-          <div class="clientes-carousel__viewport">
-            <div class="clientes-carousel__track" id="clientesTrack">
-              <div class="clientes-carousel__slide active">TechFlow</div>
-              <div class="clientes-carousel__slide">InnovaCorp</div>
-              <div class="clientes-carousel__slide">GreenLife</div>
-              <div class="clientes-carousel__slide">DigiStore</div>
-              <div class="clientes-carousel__slide">BrandUp</div>
-              <div class="clientes-carousel__slide">CreativLab</div>
-              <div class="clientes-carousel__slide">Nexum</div>
-              <div class="clientes-carousel__slide">TechStart</div>
-            </div>
-          </div>
-          <div class="clientes-carousel__dots" id="clientesDots"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== 5. TESTIMONIOS ===== -->
-    <section id="testimonios" class="testimonios">
-      <div class="container">
-        <div class="section-title fade-up">
-          <div class="overline">Testimonios</div>
-          <h2>Lo que dicen nuestros clientes</h2>
-          <p>Resultados reales de clientes reales.</p>
-        </div>
-
-        <div class="testimonios-grid fade-up">
-          <div class="card-testimonial">
-            <div class="stars">&starf;&starf;&starf;&starf;&starf;</div>
-            <blockquote>"MonkieStudio transformó nuestra identidad de marca. El equipo entendió nuestra visión desde el primer día y superó nuestras expectativas."</blockquote>
-            <div class="author">
-              <div class="avatar">MR</div>
-              <div class="info">
-                <div class="name">María Rodríguez</div>
-                <div class="role">CEO, TechStart</div>
+    <!-- ===== HERO SLIDER ===== -->
+    <section id="inicio" class="hero-slider relative min-h-screen pt-[72px] overflow-hidden">
+      <div class="hero-slides relative w-full h-full">
+        <div class="hero-slide active" data-index="0">
+          <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1920&q=80');"></div>
+          <div class="absolute inset-0 bg-gradient-to-r from-primario-950/80 via-primario-950/60 to-primario-950/40"></div>
+          <div class="relative z-10 h-full flex items-center">
+            <div class="max-w-7xl mx-auto px-6 w-full py-20">
+              <div class="max-w-2xl">
+                <span class="inline-block text-xs font-bold uppercase tracking-[0.15em] text-primario-300 mb-4">Servicio destacado</span>
+                <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-[1.1]">Diseño y<br>desarrollo web</h1>
+                <p class="text-lg sm:text-xl text-primario-200 mt-4 max-w-xl leading-relaxed">Creamos sitios web modernos, rápidos y responsivos que potencian tu presencia digital.</p>
+                <div class="mt-8 flex flex-wrap gap-4">
+                  <a href="#servicios" class="inline-flex items-center justify-center h-14 px-8 rounded-xl bg-secundario-600 text-white text-base font-semibold hover:bg-secundario-700 hover:-translate-y-0.5 active:scale-97 transition-all shadow-lg shadow-secundario-600/25">Ver servicios</a>
+                  <a href="#agenda" class="inline-flex items-center justify-center h-14 px-8 rounded-xl border-2 border-white/30 text-white text-base font-semibold hover:border-white/60 hover:bg-white/10 transition-all">Agendar cita</a>
+                </div>
               </div>
             </div>
           </div>
-          <div class="card-testimonial">
-            <div class="stars">&starf;&starf;&starf;&starf;&starf;</div>
-            <blockquote>"Su enfoque en la estrategia digital nos ayudó a duplicar nuestras ventas online en solo 3 meses. Resultados medibles desde la primera campaña."</blockquote>
-            <div class="author">
-              <div class="avatar">CL</div>
-              <div class="info">
-                <div class="name">Carlos López</div>
-                <div class="role">Director Marketing, InnovaCorp</div>
+        </div>
+
+        <div class="hero-slide" data-index="1">
+          <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&w=1920&q=80');"></div>
+          <div class="absolute inset-0 bg-gradient-to-r from-primario-950/80 via-primario-950/60 to-primario-950/40"></div>
+          <div class="relative z-10 h-full flex items-center">
+            <div class="max-w-7xl mx-auto px-6 w-full py-20">
+              <div class="max-w-2xl">
+                <span class="inline-block text-xs font-bold uppercase tracking-[0.15em] text-primario-300 mb-4">Servicio destacado</span>
+                <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-[1.1]">Branding<br>estratégico</h1>
+                <p class="text-lg sm:text-xl text-primario-200 mt-4 max-w-xl leading-relaxed">Construimos marcas memorables que conectan con tu audiencia y reflejan tu esencia.</p>
+                <div class="mt-8 flex flex-wrap gap-4">
+                  <a href="#servicios" class="inline-flex items-center justify-center h-14 px-8 rounded-xl bg-secundario-600 text-white text-base font-semibold hover:bg-secundario-700 hover:-translate-y-0.5 active:scale-97 transition-all shadow-lg shadow-secundario-600/25">Ver servicios</a>
+                  <a href="#agenda" class="inline-flex items-center justify-center h-14 px-8 rounded-xl border-2 border-white/30 text-white text-base font-semibold hover:border-white/60 hover:bg-white/10 transition-all">Agendar cita</a>
+                </div>
               </div>
             </div>
           </div>
-          <div class="card-testimonial">
-            <div class="stars">&starf;&starf;&starf;&starf;&starf;</div>
-            <blockquote>"No solo crearon un sitio web hermoso, sino que optimizaron toda nuestra presencia digital. Altamente recomendados para cualquier proyecto."</blockquote>
-            <div class="author">
-              <div class="avatar">AG</div>
-              <div class="info">
-                <div class="name">Ana Gómez</div>
-                <div class="role">Fundadora, GreenLife</div>
-              </div>
-            </div>
-          </div>
-          <div class="card-testimonial">
-            <div class="stars">&starf;&starf;&starf;&starf;&starf;</div>
-            <blockquote>"La campaña de Google Ads que diseñaron nos generó un ROI del 300% en el primer trimestre. Su metodología basada en datos marca la diferencia."</blockquote>
-            <div class="author">
-              <div class="avatar">PM</div>
-              <div class="info">
-                <div class="name">Pedro Martínez</div>
-                <div class="role">Gerente Comercial, DigiStore</div>
+        </div>
+
+        <div class="hero-slide" data-index="2">
+          <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1920&q=80');"></div>
+          <div class="absolute inset-0 bg-gradient-to-r from-primario-950/80 via-primario-950/60 to-primario-950/40"></div>
+          <div class="relative z-10 h-full flex items-center">
+            <div class="max-w-7xl mx-auto px-6 w-full py-20">
+              <div class="max-w-2xl">
+                <span class="inline-block text-xs font-bold uppercase tracking-[0.15em] text-primario-300 mb-4">Servicio destacado</span>
+                <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-[1.1]">Marketing<br>Digital</h1>
+                <p class="text-lg sm:text-xl text-primario-200 mt-4 max-w-xl leading-relaxed">Estrategias de Google Ads, SEO y Social Media para llevar tu marca al siguiente nivel.</p>
+                <div class="mt-8 flex flex-wrap gap-4">
+                  <a href="#servicios" class="inline-flex items-center justify-center h-14 px-8 rounded-xl bg-secundario-600 text-white text-base font-semibold hover:bg-secundario-700 hover:-translate-y-0.5 active:scale-97 transition-all shadow-lg shadow-secundario-600/25">Ver servicios</a>
+                  <a href="#agenda" class="inline-flex items-center justify-center h-14 px-8 rounded-xl border-2 border-white/30 text-white text-base font-semibold hover:border-white/60 hover:bg-white/10 transition-all">Agendar cita</a>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      <div class="hero-dots absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-3">
+        <button class="hero-dot active" data-slide="0" aria-label="Slide 1"></button>
+        <button class="hero-dot" data-slide="1" aria-label="Slide 2"></button>
+        <button class="hero-dot" data-slide="2" aria-label="Slide 3"></button>
+      </div>
+
+      <button class="hero-arrow hero-arrow-prev absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm text-white flex items-center justify-center text-2xl hover:bg-white/20 transition-all hidden md:flex" aria-label="Anterior">‹</button>
+      <button class="hero-arrow hero-arrow-next absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm text-white flex items-center justify-center text-2xl hover:bg-white/20 transition-all hidden md:flex" aria-label="Siguiente">›</button>
     </section>
 
-    <!-- ===== 6. CONTACTO ===== -->
-    <section id="contacto" class="contacto">
-      <div class="container">
-        <div class="section-title fade-up">
-          <div class="overline">Contacto</div>
-          <h2>Trabajemos juntos</h2>
-          <p>Cuéntanos sobre tu proyecto y te enviaremos una propuesta en 48 horas.</p>
+    <!-- ===== SERVICIOS ===== -->
+    <section id="servicios" class="py-20 lg:py-28 bg-white">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center max-w-2xl mx-auto fade-up">
+          <h2 class="text-3xl lg:text-4xl font-bold text-primario-950">Nuestros servicios</h2>
+          <p class="mt-3 text-primario-700/70">Soluciones integrales de marketing digital para tu marca.</p>
         </div>
 
-        <div class="contacto__grid fade-up">
-          <form class="contact-form" id="contactForm" novalidate>
-            <div class="form-group">
-              <label for="formName">Nombre</label>
-              <input type="text" id="formName" placeholder="Tu nombre" required autocomplete="name">
-              <span class="helper"></span>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12 fade-up">
+          <div class="bg-white border border-gray-300 rounded-2xl p-8 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all">
+            <div class="w-14 h-14 rounded-xl bg-secundario-600 flex items-center justify-center mb-5">
+              <svg class="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.53 16.122a3 3 0 0 0-5.78 1.128 2.25 2.25 0 0 1-2.4 2.245 4.5 4.5 0 0 0 8.4-2.245c0-.399-.078-.78-.22-1.128Zm0 0a15.998 15.998 0 0 0 3.388-1.62m-5.043-.025a15.994 15.994 0 0 1 1.622-3.395m3.42 3.42a15.995 15.995 0 0 0 4.764-4.648l3.876-5.814a1.151 1.151 0 0 0-1.597-1.597L14.146 6.32a15.996 15.996 0 0 0-4.649 4.763m3.42 3.42a6.776 6.776 0 0 0-3.42-3.42"/></svg>
             </div>
-            <div class="form-group">
-              <label for="formEmail">Correo</label>
-              <input type="email" id="formEmail" placeholder="correo@ejemplo.com" required autocomplete="email">
-              <span class="helper"></span>
+            <h3 class="text-xl font-semibold text-primario-950">Diseño y programación de páginas web (UX/UI)</h3>
+            <p class="mt-2 text-primario-700/70 text-sm leading-relaxed">En estos nuevos tiempos de contacto virtual, nuestro sitio web será la única cara que muchos clientes vean de nuestra empresa/marca. ¿Qué quisieras que piensen al verla? Déjalo en nuestras manos.</p>
+          </div>
+          <div class="bg-white border border-gray-300 rounded-2xl p-8 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all">
+            <div class="w-14 h-14 rounded-xl bg-secundario-600 flex items-center justify-center mb-5">
+              <svg class="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 .75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.01M2.36 21a.75.75 0 0 1-.75-.75v-7.5a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 .75.75V21m-3.75 0h3.75M2.36 7.5h15.28M2.36 7.5A2.25 2.25 0 0 0 5.61 9.75h8.28a2.25 2.25 0 0 0 3.25-2.25m-16.78 0A2.25 2.25 0 0 1 5.61 5.25h8.28a2.25 2.25 0 0 1 3.25 2.25m-16.78 0h16.78"/></svg>
             </div>
-            <div class="form-group">
-              <label for="formMessage">Mensaje</label>
-              <textarea id="formMessage" placeholder="Cuéntanos sobre tu proyecto..." required></textarea>
-              <span class="helper"></span>
+            <h3 class="text-xl font-semibold text-primario-950">e-Commerce</h3>
+            <p class="mt-2 text-primario-700/70 text-sm leading-relaxed">Desarrollamos tu tienda virtual con el mejor ratio de conversión a ventas. Optimizadas, con estrategias SEO, reducción de velocidad de carga, funcionalidades especiales, o la ruta de éxito que necesites.</p>
+          </div>
+          <div class="bg-white border border-gray-300 rounded-2xl p-8 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all">
+            <div class="w-14 h-14 rounded-xl bg-secundario-600 flex items-center justify-center mb-5">
+              <svg class="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M10.34 15.84c-.688-.06-1.386-.09-2.09-.09H7.5a4.5 4.5 0 1 1 0-9h.75c.704 0 1.402-.03 2.09-.09m0 9.18c.253.962.584 1.892.985 2.783.247.55.06 1.21-.463 1.511l-.657.38a.495.495 0 0 1-.677-.256 13.952 13.952 0 0 1-1.448-4.418m4.16-7.178c.253-.962.584-1.892.985-2.783.247-.55.06-1.21-.463-1.511l-.657-.38a.495.495 0 0 0-.677.256 13.956 13.956 0 0 0-1.448 4.418m3.36 5.637A12.06 12.06 0 0 0 12 12a12.06 12.06 0 0 0-1.34-3.66M12 12a12.06 12.06 0 0 1 1.34-3.66M12 12a12.06 12.06 0 0 0-1.34 3.66M15 12h3m-3 0a12.06 12.06 0 0 1-1.34 3.66M15 12a12.06 12.06 0 0 0-1.34-3.66"/></svg>
             </div>
-            <button type="submit" class="btn btn-primary btn-lg">Enviar mensaje</button>
-          </form>
+            <h3 class="text-xl font-semibold text-primario-950">Social Media</h3>
+            <p class="mt-2 text-primario-700/70 text-sm leading-relaxed">No se trata de conseguir más likes o corazones. Analizamos tu marca, encontramos tu audiencia y creamos comunicación efectiva para lograr el correcto objetivo en cada red social donde debes estar.</p>
+          </div>
+          <div class="bg-white border border-gray-300 rounded-2xl p-8 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all">
+            <div class="w-14 h-14 rounded-xl bg-secundario-600 flex items-center justify-center mb-5">
+              <svg class="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 0 0-2.455 2.456ZM16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 0 0 1.423 1.423l1.183.394-1.183.394a2.25 2.25 0 0 0-1.423 1.423Z"/></svg>
+            </div>
+            <h3 class="text-xl font-semibold text-primario-950">Branding</h3>
+            <p class="mt-2 text-primario-700/70 text-sm leading-relaxed">Eleva la percepción de valor de tu marca. Desde el nacimiento de tu marca, concepto creativo, nombre, logo e identidad visual. Deja que juntos demos vida a tu sueño.</p>
+          </div>
+          <div class="bg-white border border-gray-300 rounded-2xl p-8 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all">
+            <div class="w-14 h-14 rounded-xl bg-secundario-600 flex items-center justify-center mb-5">
+              <svg class="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 0 0 6 3.75v16.5a2.25 2.25 0 0 0 2.25 2.25h7.5A2.25 2.25 0 0 0 18 20.25V3.75a2.25 2.25 0 0 0-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3"/></svg>
+            </div>
+            <h3 class="text-xl font-semibold text-primario-950">Programación de apps</h3>
+            <p class="mt-2 text-primario-700/70 text-sm leading-relaxed">Una aplicación móvil es tu marca en la mano de tus clientes. Diseñamos y desarrollamos sistemas para aplicaciones iOS, Android y PWA, utilizando las últimas metodologías ágiles.</p>
+          </div>
+          <div class="bg-white border border-gray-300 rounded-2xl p-8 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all">
+            <div class="w-14 h-14 rounded-xl bg-secundario-600 flex items-center justify-center mb-5">
+              <svg class="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-2.25m-7.5 0h7.5m-7.5 0-1 3m8.5-3 1 3m0 0 .5 1.5m-.5-1.5h-9.5m0 0-.5 1.5m.75-9 3-3 2.148 2.148A12.061 12.061 0 0 1 16.5 7.605"/></svg>
+            </div>
+            <h3 class="text-xl font-semibold text-primario-950">Plan de Marketing Digital</h3>
+            <p class="mt-2 text-primario-700/70 text-sm leading-relaxed">Más de 3,000 casos de éxito en empresas B2B/B2C de productos y servicios en distintos sectores nos avalan. Iniciemos juntos la transformación digital en tu área de marketing.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-          <div class="contacto__info">
-            <div class="contacto__info-item">
-              <div class="icon">&#128205;</div>
-              <div class="text">Lima, Perú</div>
+    <!-- ===== MÉTODO ===== -->
+    <section id="metodo" class="py-20 lg:py-28 bg-fondo-bg">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center max-w-2xl mx-auto fade-up">
+          <h2 class="text-3xl lg:text-4xl font-bold text-primario-950">¿Prefieres que te guiemos?</h2>
+          <p class="mt-3 text-primario-700/70">Dos tipos de estrategias para aumentar tus ventas.</p>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-8 mt-12 fade-up">
+          <div class="bg-primario-900 border border-gray-300 rounded-2xl p-8 lg:p-10 shadow-sm hover:shadow-lg transition-all">
+            <div class="w-16 h-16 rounded-2xl bg-white flex items-center justify-center mb-6">
+              <svg class="w-8 h-8 text-primario-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.443 0-4.71-.708-6.608-1.925A4.125 4.125 0 0 1 8.86 13.764m3.642-5.346a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM18 5.25a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Z"/></svg>
             </div>
-            <div class="contacto__info-item">
-              <div class="icon">&#9993;</div>
-              <div class="text">hola@monkiestudio.com</div>
+            <h3 class="text-2xl font-bold text-white">¡Más clientes!</h3>
+            <p class="mt-3 text-white/70 leading-relaxed">Te conseguimos más clientes y hacemos que te compren más veces.</p>
+          </div>
+
+          <div class="bg-primario-900 border border-gray-300 rounded-2xl p-8 lg:p-10 shadow-sm hover:shadow-lg transition-all">
+            <div class="w-16 h-16 rounded-2xl bg-white flex items-center justify-center mb-6">
+              <svg class="w-8 h-8 text-primario-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
             </div>
-            <div class="contacto__info-item">
-              <div class="icon">&#9742;</div>
-              <div class="text">+51 999 999 999</div>
-            </div>
-            <div>
-              <p class="contacto__social-title">Síguenos</p>
-              <div class="contacto__social">
-                <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
-                <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-                <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+            <h3 class="text-2xl font-bold text-white">¡Más valor!</h3>
+            <p class="mt-3 text-white/70 leading-relaxed">Te ayudamos a subir tus precios mejorando la percepción de tu marca.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== METODOLOGÍA TIMELINE ===== -->
+    <section class="py-20 lg:py-28 bg-white">
+      <div class="max-w-5xl mx-auto px-6">
+        <div class="text-center max-w-2xl mx-auto fade-up">
+          <h2 class="text-3xl lg:text-4xl font-bold text-primario-950">Nuestra metodología en 3 pasos</h2>
+          <p class="mt-3 text-primario-700/70">Te mostramos nuestra fórmula para tener más clientes.</p>
+        </div>
+
+        <div class="mt-12 fade-up relative">
+          <div class="hidden md:block absolute top-8 left-[18%] right-[18%] h-0.5 bg-secundario-200"></div>
+
+          <div class="grid md:grid-cols-3 gap-8 md:gap-6">
+            <div class="flex flex-col items-center text-center relative">
+              <div class="w-16 h-16 rounded-full bg-secundario-600 text-white flex items-center justify-center text-2xl font-bold shadow-md relative z-10">1</div>
+              <div class="mt-8 w-full">
+                <h3 class="text-xl font-bold text-primario-950">Planifica</h3>
+                <p class="mt-2 text-primario-700/70 text-sm leading-relaxed">Analizamos tu mercado y audiencia para definir dónde estás, a dónde quieres llegar y cómo hacerlo paso a paso.</p>
               </div>
             </div>
+
+            <div class="flex flex-col items-center text-center relative">
+              <div class="w-16 h-16 rounded-full bg-secundario-600 text-white flex items-center justify-center text-2xl font-bold shadow-md relative z-10">2</div>
+              <div class="mt-8 w-full">
+                <h3 class="text-xl font-bold text-primario-950">Que te encuentren</h3>
+                <p class="mt-2 text-primario-700/70 text-sm leading-relaxed">Implementamos estrategias de posicionamiento para que quienes ya tienen el problema correcto te encuentren como la solución ideal.</p>
+              </div>
+            </div>
+
+            <div class="flex flex-col items-center text-center relative">
+              <div class="w-16 h-16 rounded-full bg-secundario-600 text-white flex items-center justify-center text-2xl font-bold shadow-md relative z-10">3</div>
+              <div class="mt-8 w-full">
+                <h3 class="text-xl font-bold text-primario-950">Que te busquen</h3>
+                <p class="mt-2 text-primario-700/70 text-sm leading-relaxed">Creamos una propuesta de valor que convierte prospectos en clientes leales que no solo compran, sino que te recomiendan.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CLIENTES ===== -->
+    <section id="clientes" class="py-20 lg:py-28 bg-fondo-bg">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center max-w-2xl mx-auto fade-up">
+          <h2 class="text-3xl lg:text-4xl font-bold text-primario-950">Algunos de nuestros clientes</h2>
+          <p class="mt-3 text-primario-700/70">Ellos confiaron en nosotros y ahora lo agradecen.</p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12 fade-up">
+          <div class="bg-white rounded-2xl overflow-hidden border border-gray-300 shadow-sm hover:shadow-lg transition-all">
+            <div class="relative aspect-[4/3] overflow-hidden">
+              <img src="https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Proyecto web" class="absolute inset-0 w-full h-full object-cover">
+              <div class="absolute inset-0 bg-gradient-to-t from-primario-950/70 via-primario-950/10 to-transparent"></div>
+              <span class="absolute bottom-4 left-4 text-white text-sm font-semibold">Proyecto Web</span>
+            </div>
+            <div class="p-5">
+              <span class="text-xs font-semibold uppercase tracking-wider text-primario-500">Diseño y programación</span>
+              <h4 class="text-lg font-semibold text-primario-950 mt-1">Sitio web corporativo</h4>
+            </div>
+          </div>
+          <div class="bg-white rounded-2xl overflow-hidden border border-gray-300 shadow-sm hover:shadow-lg transition-all">
+            <div class="relative aspect-[4/3] overflow-hidden">
+              <img src="https://images.pexels.com/photos/5598296/pexels-photo-5598296.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Packaging" class="absolute inset-0 w-full h-full object-cover">
+              <div class="absolute inset-0 bg-gradient-to-t from-primario-950/70 via-primario-950/10 to-transparent"></div>
+              <span class="absolute bottom-4 left-4 text-white text-sm font-semibold">Packaging</span>
+            </div>
+            <div class="p-5">
+              <span class="text-xs font-semibold uppercase tracking-wider text-primario-500">Diseño de empaque</span>
+              <h4 class="text-lg font-semibold text-primario-950 mt-1">Rediseño de packaging</h4>
+            </div>
+          </div>
+          <div class="bg-white rounded-2xl overflow-hidden border border-gray-300 shadow-sm hover:shadow-lg transition-all">
+            <div class="relative aspect-[4/3] overflow-hidden">
+              <img src="https://images.pexels.com/photos/1925536/pexels-photo-1925536.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Branding" class="absolute inset-0 w-full h-full object-cover">
+              <div class="absolute inset-0 bg-gradient-to-t from-primario-950/70 via-primario-950/10 to-transparent"></div>
+              <span class="absolute bottom-4 left-4 text-white text-sm font-semibold">Branding</span>
+            </div>
+            <div class="p-5">
+              <span class="text-xs font-semibold uppercase tracking-wider text-primario-500">Branding</span>
+              <h4 class="text-lg font-semibold text-primario-950 mt-1">Identidad de marca</h4>
+            </div>
+          </div>
+          <div class="bg-white rounded-2xl overflow-hidden border border-gray-300 shadow-sm hover:shadow-lg transition-all">
+            <div class="relative aspect-[4/3] overflow-hidden">
+              <img src="https://images.pexels.com/photos/1092644/pexels-photo-1092644.jpeg?auto=compress&cs=tinysrgb&w=800" alt="App Móvil" class="absolute inset-0 w-full h-full object-cover">
+              <div class="absolute inset-0 bg-gradient-to-t from-primario-950/70 via-primario-950/10 to-transparent"></div>
+              <span class="absolute bottom-4 left-4 text-white text-sm font-semibold">App Móvil</span>
+            </div>
+            <div class="p-5">
+              <span class="text-xs font-semibold uppercase tracking-wider text-primario-500">Desarrollo de app</span>
+              <h4 class="text-lg font-semibold text-primario-950 mt-1">Aplicación móvil</h4>
+            </div>
+          </div>
+          <div class="bg-white rounded-2xl overflow-hidden border border-gray-300 shadow-sm hover:shadow-lg transition-all">
+            <div class="relative aspect-[4/3] overflow-hidden">
+              <img src="https://images.pexels.com/photos/267350/pexels-photo-267350.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Social Media" class="absolute inset-0 w-full h-full object-cover">
+              <div class="absolute inset-0 bg-gradient-to-t from-primario-950/70 via-primario-950/10 to-transparent"></div>
+              <span class="absolute bottom-4 left-4 text-white text-sm font-semibold">Social Media</span>
+            </div>
+            <div class="p-5">
+              <span class="text-xs font-semibold uppercase tracking-wider text-primario-500">Social Media</span>
+              <h4 class="text-lg font-semibold text-primario-950 mt-1">Gestión de redes sociales</h4>
+            </div>
+          </div>
+          <div class="bg-white rounded-2xl overflow-hidden border border-gray-300 shadow-sm hover:shadow-lg transition-all">
+            <div class="relative aspect-[4/3] overflow-hidden">
+              <img src="https://images.pexels.com/photos/5999721/pexels-photo-5999721.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Logo" class="absolute inset-0 w-full h-full object-cover">
+              <div class="absolute inset-0 bg-gradient-to-t from-primario-950/70 via-primario-950/10 to-transparent"></div>
+              <span class="absolute bottom-4 left-4 text-white text-sm font-semibold">Logo</span>
+            </div>
+            <div class="p-5">
+              <span class="text-xs font-semibold uppercase tracking-wider text-primario-500">Diseño de logo</span>
+              <h4 class="text-lg font-semibold text-primario-950 mt-1">Creación de logotipo</h4>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-16 overflow-hidden fade-up">
+          <div class="flex gap-8 animate-marquee" style="width: fit-content;">
+            <div class="flex-shrink-0 px-8 py-4 bg-white border border-gray-300 rounded-xl text-sm font-semibold text-primario-700/60">Alianza Lima</div>
+            <div class="flex-shrink-0 px-8 py-4 bg-white border border-gray-300 rounded-xl text-sm font-semibold text-primario-700/60">Cineplanet</div>
+            <div class="flex-shrink-0 px-8 py-4 bg-white border border-gray-300 rounded-xl text-sm font-semibold text-primario-700/60">Panasonic</div>
+            <div class="flex-shrink-0 px-8 py-4 bg-white border border-gray-300 rounded-xl text-sm font-semibold text-primario-700/60">Toulouse Lautrec</div>
+            <div class="flex-shrink-0 px-8 py-4 bg-white border border-gray-300 rounded-xl text-sm font-semibold text-primario-700/60">PUCP</div>
+            <div class="flex-shrink-0 px-8 py-4 bg-white border border-gray-300 rounded-xl text-sm font-semibold text-primario-700/60">Sodexo</div>
+            <div class="flex-shrink-0 px-8 py-4 bg-white border border-gray-300 rounded-xl text-sm font-semibold text-primario-700/60">Billabong</div>
+            <div class="flex-shrink-0 px-8 py-4 bg-white border border-gray-300 rounded-xl text-sm font-semibold text-primario-700/60">Revlon</div>
+            <div class="flex-shrink-0 px-8 py-4 bg-white border border-gray-300 rounded-xl text-sm font-semibold text-primario-700/60">Alianza Lima</div>
+            <div class="flex-shrink-0 px-8 py-4 bg-white border border-gray-300 rounded-xl text-sm font-semibold text-primario-700/60">Cineplanet</div>
+            <div class="flex-shrink-0 px-8 py-4 bg-white border border-gray-300 rounded-xl text-sm font-semibold text-primario-700/60">Panasonic</div>
+            <div class="flex-shrink-0 px-8 py-4 bg-white border border-gray-300 rounded-xl text-sm font-semibold text-primario-700/60">Toulouse Lautrec</div>
+            <div class="flex-shrink-0 px-8 py-4 bg-white border border-gray-300 rounded-xl text-sm font-semibold text-primario-700/60">PUCP</div>
+            <div class="flex-shrink-0 px-8 py-4 bg-white border border-gray-300 rounded-xl text-sm font-semibold text-primario-700/60">Sodexo</div>
+            <div class="flex-shrink-0 px-8 py-4 bg-white border border-gray-300 rounded-xl text-sm font-semibold text-primario-700/60">Billabong</div>
+            <div class="flex-shrink-0 px-8 py-4 bg-white border border-gray-300 rounded-xl text-sm font-semibold text-primario-700/60">Revlon</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== TESTIMONIOS ===== -->
+    <section id="testimonios" class="py-20 lg:py-28 bg-white">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center max-w-2xl mx-auto fade-up">
+          <h2 class="text-3xl lg:text-4xl font-bold text-primario-950">Sus historias</h2>
+          <p class="mt-3 text-primario-700/70">Algunas historias de crecimiento junto a nosotros.</p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12 fade-up">
+          <div class="bg-[var(--color-secundario)]/10 border border-gray-300 rounded-2xl p-8 lg:p-10 text-center">
+            <div class="text-amber-400 text-2xl tracking-[3px]">★★★★★</div>
+            <blockquote class="text-lg italic mt-6 leading-relaxed text-primario-950">"En 2020, cuando iniciamos nuestro proyecto de firmas digitales para Panamá, sabíamos que una buena inversión en Branding nos ayudaría a aumentar el valor de nuestra marca. Gracias a una recomendación, llegamos a MonkieStudio. Quedamos más que contentos con su trabajo."</blockquote>
+            <div class="mt-6 flex items-center justify-center gap-3">
+              <div class="w-12 h-12 rounded-full bg-secundario-600 text-white flex items-center justify-center font-bold text-sm">EJ</div>
+              <div class="text-left">
+                <p class="font-semibold text-primario-950">Eric Jethmal</p>
+                <p class="text-sm text-primario-700/70">Gerente General</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-[var(--color-secundario)]/10 border border-gray-300 rounded-2xl p-8 lg:p-10 text-center">
+            <div class="text-amber-400 text-2xl tracking-[3px]">★★★★★</div>
+            <blockquote class="text-lg italic mt-6 leading-relaxed text-primario-950">"Con MonkieStudio renovamos nuestro logo para lanzar un nuevo disco, también manejaron nuestras redes sociales creando una nueva línea gráfica. Ellos capturaron la esencia de nuestra banda."</blockquote>
+            <div class="mt-6 flex items-center justify-center gap-3">
+              <div class="w-12 h-12 rounded-full bg-secundario-600 text-white flex items-center justify-center font-bold text-sm">SV</div>
+              <div class="text-left">
+                <p class="font-semibold text-primario-950">Salim Vera</p>
+                <p class="text-sm text-primario-700/70">Libido</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-[var(--color-secundario)]/10 border border-gray-300 rounded-2xl p-8 lg:p-10 text-center">
+            <div class="text-amber-400 text-2xl tracking-[3px]">★★★★★</div>
+            <blockquote class="text-lg italic mt-6 leading-relaxed text-primario-950">"Estamos contentos con el servicio y profesionalismo que siempre nos brinda el equipo de MonkieStudio. Están en constante innovación y eso lo vemos reflejado en nuestras redes sociales."</blockquote>
+            <div class="mt-6 flex items-center justify-center gap-3">
+              <div class="w-12 h-12 rounded-full bg-secundario-600 text-white flex items-center justify-center font-bold text-sm">CA</div>
+              <div class="text-left">
+                <p class="font-semibold text-primario-950">Carlos Anavitarte</p>
+                <p class="text-sm text-primario-700/70">Jefe de Marketing</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CONTADORES ===== -->
+    <section class="py-16 lg:py-20 bg-primario-950">
+      <div class="max-w-5xl mx-auto px-6 grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+        <div>
+          <div class="text-4xl lg:text-5xl font-bold text-white">3,000+</div>
+          <p class="text-sm text-white/70 mt-2 font-medium">empresas que confían en nosotros.</p>
+        </div>
+        <div>
+          <div class="text-4xl lg:text-5xl font-bold text-white">10+</div>
+          <p class="text-sm text-white/70 mt-2 font-medium">años potenciando empresas.</p>
+        </div>
+        <div>
+          <div class="text-4xl lg:text-5xl font-bold text-white">500+</div>
+          <p class="text-sm text-white/70 mt-2 font-medium">pizzas pedidas en la agencia.</p>
+        </div>
+        <div>
+          <div class="text-4xl lg:text-5xl font-bold text-white">∞</div>
+          <p class="text-sm text-white/70 mt-2 font-medium">minutos pensando qué poner aquí.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== BOOKING / CTA ===== -->
+    <section id="agenda" class="py-20 lg:py-28 bg-white">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center max-w-2xl mx-auto fade-up">
+          <h2 class="text-3xl lg:text-4xl font-bold text-primario-950">Elige un tipo de cita</h2>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-8 mt-12 fade-up">
+          <div class="bg-[var(--color-secundario)]/5 border border-gray-300 rounded-2xl p-8 lg:p-10">
+            <div class="w-20 h-20 flex items-center justify-center mx-auto mb-6">
+              <svg class="w-10 h-10 text-secundario-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 0 0 1.5-.189m-1.5.189a6.01 6.01 0 0 1-1.5-.189m3.75 7.478a12.06 12.06 0 0 1-4.5 0m3.75 2.383a14.406 14.406 0 0 1-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 1 0-7.517 0c.85.493 1.509 1.333 1.509 2.316V18"/></svg>
+            </div>
+            <h3 class="text-2xl font-bold text-primario-950 text-center">¿Necesitas que te guiemos?</h3>
+            <p class="text-center text-primario-700/70 mt-2">Te <strong class="text-primario-600">obsequiamos 20 min.</strong> de consultoría.</p>
+            <form class="mt-8 space-y-4" id="formConsultoria" novalidate>
+              <div class="form-group">
+                <input type="text" placeholder="Tu nombre" required class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white text-primario-950 font-sans text-base transition-all focus:outline-none focus:border-secundario-600 focus:ring-2 focus:ring-secundario-600/20">
+                <span class="helper text-xs mt-1 text-primario-700/70"></span>
+              </div>
+              <div class="form-group">
+                <input type="email" placeholder="Tu correo electrónico" required class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white text-primario-950 font-sans text-base transition-all focus:outline-none focus:border-secundario-600 focus:ring-2 focus:ring-secundario-600/20">
+                <span class="helper text-xs mt-1 text-primario-700/70"></span>
+              </div>
+              <label class="flex items-start gap-3 text-sm text-primario-700/70">
+                <input type="checkbox" required class="mt-1 accent-secundario-600">
+                <span>Acepto la <a href="#" class="text-primario-600 underline">política de privacidad</a>.</span>
+              </label>
+              <button type="submit" class="w-full h-12 rounded-xl bg-secundario-600 text-white font-semibold hover:bg-secundario-700 transition-all">Agendar consultoría</button>
+            </form>
+          </div>
+
+          <div class="bg-[var(--color-secundario)]/5 border border-gray-300 rounded-2xl p-8 lg:p-10">
+            <div class="w-20 h-20 flex items-center justify-center mx-auto mb-6">
+              <svg class="w-10 h-10 text-secundario-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"/></svg>
+            </div>
+            <h3 class="text-2xl font-bold text-primario-950 text-center">¿Ya tienes claro lo que necesitas?</h3>
+            <p class="text-center text-primario-700/70 mt-2">Reunámonos para revisar tu requerimiento.</p>
+            <form class="mt-8 space-y-4" id="formCotizar" novalidate>
+              <div class="form-group">
+                <input type="text" placeholder="Tu nombre" required class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white text-primario-950 font-sans text-base transition-all focus:outline-none focus:border-secundario-600 focus:ring-2 focus:ring-secundario-600/20">
+                <span class="helper text-xs mt-1 text-primario-700/70"></span>
+              </div>
+              <div class="form-group">
+                <input type="email" placeholder="Tu correo electrónico" required class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white text-primario-950 font-sans text-base transition-all focus:outline-none focus:border-secundario-600 focus:ring-2 focus:ring-secundario-600/20">
+                <span class="helper text-xs mt-1 text-primario-700/70"></span>
+              </div>
+              <div class="form-group">
+                <select required class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white text-primario-950 font-sans text-base transition-all focus:outline-none focus:border-secundario-600 focus:ring-2 focus:ring-secundario-600/20">
+                  <option value="">Servicio de interés</option>
+                  <option>Branding</option>
+                  <option>Diseño y programación web (UX/UI)</option>
+                  <option>e-Commerce</option>
+                  <option>Google Ads</option>
+                  <option>Plan de Marketing Digital</option>
+                  <option>Programación de apps</option>
+                  <option>Social Media</option>
+                </select>
+                <span class="helper text-xs mt-1 text-primario-700/70"></span>
+              </div>
+              <label class="flex items-start gap-3 text-sm text-primario-700/70">
+                <input type="checkbox" required class="mt-1 accent-secundario-600">
+                <span>Acepto la <a href="#" class="text-primario-600 underline">política de privacidad</a>.</span>
+              </label>
+              <button type="submit" class="w-full h-12 rounded-xl bg-secundario-600 text-white font-semibold hover:bg-secundario-700 transition-all">Agendar para cotizar</button>
+            </form>
           </div>
         </div>
       </div>
@@ -325,56 +528,79 @@
   </main>
 
   <!-- ===== FOOTER ===== -->
-  <footer class="footer" role="contentinfo">
-    <div class="footer__grid">
-      <div class="footer__col footer__brand">
-        <div class="footer__logo">
-          <svg viewBox="0 0 280.1 63.02" fill="#fff">
-            <g>
-              <path d="M105.5,28.62c-.5,0-.9,0-1.4.1-4.8-14.6-17.6-25.6-33.3-27.6s-8.6-.7-11.7-.7-9.9.5-11.8.7c-8.9,1.2-16.8,5.4-22.9,11.4-4.4,4.4-7.8,9.9-9.8,16h-1.2c-7.4,0-13.4,6-13.4,13.4s6,13.4,13.4,13.4,1.2,0,1.9-.1c1,2.8,2.4,5.4,4,7.8h14.4c-5-2.8-8.4-7.9-8.9-13.9v-1.4c0-2.9.7-5.6,2-8,2.9-5.6,8.8-9.5,15.6-9.5s11.7,3.2,14.8,8.1c1.3,2,4.2,2,5.5,0,3.1-4.9,8.6-8.1,14.8-8.1s12.7,3.9,15.6,9.6c1.2,2.4,1.9,5.1,1.9,8s0,.9,0,1.3c-.5,6-3.9,11.2-8.9,13.9h13.6c1.6-2.5,3-5.1,4-7.9.8.2,1.7.2,2.5.2,8.1,0,14.5-7.1,13.3-15.4-1-6.7-7.1-11.7-13.8-11.3h-.2ZM6.9,42.02c0-3.5,2.8-6.4,6.3-6.6-.3,1.8-.4,3.7-.4,5.6s.2,5.1.7,7.5c-3.6,0-6.5-3-6.5-6.6l.1.1ZM106.1,48.62h-.7c.5-2.4.7-4.9.7-7.5s-.1-3.8-.4-5.6h.4c3.7,0,6.6,3,6.6,6.6s-2.9,6.6-6.6,6.6v-.1Z"/>
-              <path d="M41,45.52c-3,0-5.4,2.4-5.4,5.4s2.4,5.4,5.4,5.4,5.4-2.4,5.4-5.4-2.4-5.4-5.4-5.4Z"/>
-              <path d="M78.6,45.52c-3,0-5.4,2.4-5.4,5.4s2.4,5.4,5.4,5.4,5.4-2.4,5.4-5.4-2.4-5.4-5.4-5.4Z"/>
-            </g>
-            <g>
-              <path d="M139.4,6.12h8.7l7.1,8.9h.4l7.1-8.9h8.7v28.1h-8.8v-16.2h-.4l-6.5,8.5h-.4l-6.5-8.5h-.4v16.2h-8.8V6.12h-.2Z"/>
-              <path d="M174.3,20.12c0-8.9,6.6-14.6,15.1-14.6s15.1,5.7,15.1,14.6-6.6,14.7-15.1,14.7-15.1-5.4-15.1-14.7ZM195,20.12c0-3.5-2.2-5.9-5.7-5.9s-5.7,2.5-5.7,5.9,2.2,6,5.7,6,5.7-2.5,5.7-6Z"/>
-              <path d="M207.5,6.12h9.6l10.4,15.2h.3V6.12h8.6v28.1h-9.6l-10.3-15.2h-.3v15.2h-8.6V6.12h-.1Z"/>
-              <path d="M253.7,24.62h-.7l-3.3,3.8v5.9h-9.2V6.12h9.2v10h.6l8.3-10h10.8l-9.7,11,9.1,17.1h-10l-5-9.6h-.1Z"/>
-              <path d="M270.9,6.12h9.2v28.1h-9.2V6.12Z"/>
-            </g>
-            <g>
-              <path d="M140.3,59.72c-.3,0-.5,0-.6-.1-.1,0-.2-.2-.3-.3s0-.3,0-.5v-12.8c0-.4,0-.6.2-.7s.4-.2.8-.2h9c.1,0,.2.1.3.3,0,.1.1.4.1.6s0,.5-.1.6c0,.1-.2.2-.3.3h-8.1v4.4h5.8c.1,0,.2.1.3.3,0,.1.1.3.1.6s0,.4-.1.6c0,.1-.2.2-.3.2h-5.7v4.8h8.1c.1,0,.2.1.3.3,0,.1.1.3.1.6s0,.5-.1.6c0,.1-.2.2-.3.3h-9l-.2.1Z"/>
-              <path d="M165.6,59.92c-.5,0-1,0-1.5-.2-.5-.1-.9-.3-1.3-.5-.4-.2-.7-.5-1-.7s-.5-.5-.7-.8c-.1-.2-.2-.4-.3-.6v-.4c0-.1.2-.3.4-.5s.4-.2.6-.2.3,0,.5.2.3.3.5.5c.4.5.8.8,1.3,1s1,.3,1.5.3,1.2,0,1.7-.3c.5-.2.9-.4,1.2-.8.3-.3.4-.8.4-1.3s-.1-.8-.3-1.1-.5-.6-.9-.8-.8-.4-1.3-.6c-.5-.2-.9-.3-1.4-.5-.4-.1-.7-.3-1.1-.4-.4-.2-.7-.3-1-.5s-.6-.5-.8-.7c-.2-.3-.4-.6-.6-1s-.2-.8-.2-1.3c0-.8.2-1.5.6-2s.9-1,1.6-1.4c.7-.3,1.4-.5,2.3-.5s1,0,1.5.1c.4,0,.8.2,1.2.4.3.2.6.3.9.5.2.2.4.3.5.5.3.3.4.5.4.7s0,.4-.3.7c-.2.3-.5.4-.7.4s-.4,0-.7-.3-.5-.5-.8-.7-.6-.3-.9-.3h-1.1c-.4,0-.7,0-1,.1-.3,0-.6.2-.8.4s-.4.4-.5.7-.2.6-.2.9.1.7.3,1,.5.5.8.7.7.3,1.1.5c.4.1.9.3,1.3.4.5.2,1,.3,1.5.6.5.2.9.5,1.3.8.4.3.7.7.9,1.2s.4,1.1.4,1.8-.1,1.3-.4,1.9c-.3.5-.7,1-1.1,1.3-.5.4-1,.6-1.6.8-.6.2-1.3.3-1.9.3l-.3-.3Z"/>
-              <path d="M193.1,45.02h.5c.1,0,.2.1.3.3v.6c0,.3,0,.4-.1.6,0,.1-.2.2-.3.2h-4.9v12.5c0,.1-.1.2-.3.3-.1,0-.3.1-.6.1s-.5,0-.6-.1c-.1,0-.2-.2-.3-.3s0-.3,0-.5v-12h-4.9c-.2,0-.2-.1-.3-.2,0-.1-.1-.3-.1-.6s0-.4.1-.6.2-.2.3-.3h11.2Z"/>
-              <path d="M211.3,59.82c-.9,0-1.8-.2-2.5-.5s-1.4-.8-1.9-1.4-.9-1.3-1.2-2.1-.4-1.7-.4-2.7v-7.6c0-.1.1-.2.3-.3.1,0,.3-.1.6-.1s.5,0,.6.1c.1,0,.2.2.3.3v7.6c0,.9.2,1.8.5,2.5s.8,1.3,1.4,1.7c.6.4,1.4.6,2.3.6s1.6-.2,2.2-.6c.6-.4,1.1-.9,1.4-1.7.3-.7.5-1.6.5-2.6v-7.7c0-.1.1-.2.3-.3s.3-.1.6-.1.5,0,.6.1c.1,0,.2.2.3.3v7.7c0,1-.1,1.9-.4,2.7-.3.8-.7,1.5-1.2,2.1s-1.2,1.1-1.9,1.4-1.6.5-2.6.5l.2.1Z"/>
-              <path d="M230.2,59.72c-.2,0-.4,0-.6-.1-.1,0-.2-.2-.3-.3v-13.8c0-.1.1-.3.3-.3.1,0,.3-.1.6-.1h4.2c1,0,2,.2,2.8.5.9.3,1.6.8,2.2,1.5.6.6,1.1,1.4,1.4,2.3.3.9.5,1.9.5,3s-.2,2.2-.5,3.1c-.3.9-.8,1.7-1.4,2.3-.6.6-1.3,1.1-2.2,1.5s-1.8.5-2.9.5h-4.1v-.1ZM231.2,57.82h3.2c1,0,1.9-.2,2.7-.7.7-.4,1.3-1.1,1.7-1.9.4-.8.6-1.8.6-2.9s-.2-2.1-.6-2.9-1-1.4-1.7-1.9c-.8-.4-1.6-.7-2.7-.7h-3.2v11Z"/>
-              <path d="M253.9,59.72c-.3,0-.5,0-.6-.1-.1,0-.2-.2-.3-.3s0-.3,0-.5v-13.3c0-.1.1-.3.3-.3.1,0,.3-.1.6-.1s.5,0,.6.1c.1,0,.2.2.3.3v13.8c0,.1-.1.2-.3.3-.1,0-.3.1-.6.1Z"/>
-              <path d="M273.1,59.82c-1,0-1.9-.2-2.8-.6s-1.7-.9-2.3-1.6c-.7-.7-1.2-1.5-1.6-2.4s-.6-1.8-.6-2.9.2-2,.5-2.9c.4-.9.9-1.7,1.5-2.4.7-.7,1.4-1.2,2.3-1.6.9-.4,1.8-.6,2.7-.6s2,.2,2.8.6c.9.4,1.6.9,2.3,1.6.7.7,1.2,1.5,1.6,2.4s.6,1.9.6,2.9-.2,2-.6,2.9-.9,1.7-1.5,2.4c-.6.7-1.4,1.2-2.2,1.6-.9.4-1.8.6-2.7.6h0ZM272.9,57.92c.7,0,1.4-.1,2.1-.4.6-.3,1.2-.7,1.7-1.2s.9-1.1,1.1-1.8.4-1.4.4-2.2-.1-1.5-.4-2.1-.7-1.3-1.1-1.8c-.5-.5-1-.9-1.7-1.2-.6-.3-1.3-.4-2-.4s-1.4.1-2,.4c-.6.3-1.2.7-1.7,1.2s-.9,1.1-1.1,1.8-.4,1.4-.4,2.2.1,1.5.4,2.2.7,1.3,1.1,1.8c.5.5,1,.9,1.7,1.2.6.3,1.3.4,2,.4l-.1-.1Z"/>
-            </g>
-          </svg>
+  <footer class="bg-primario-950 text-white/90 pt-16 pb-8" role="contentinfo">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div>
+          <img src="images/logo.svg" alt="MonkieStudio" class="h-10 w-auto mb-4 brightness-0 invert">
+          <p class="text-sm text-white/60 leading-relaxed">Agencia de Marketing Digital</p>
+          <p class="text-xs text-white/40 leading-relaxed mt-2">Especialistas en branding, desarrollo web y estrategias digitales que impulsan tu marca al siguiente nivel.</p>
+          
         </div>
-        <p>Somos una agencia creativa que transforma marcas a través de estrategias de marketing innovadoras y diseño de alto impacto.</p>
+
+        <div>
+          <h5 class="text-sm font-bold mb-4 text-white">Legales</h5>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-sm text-white/70 hover:text-white transition-colors">Política de privacidad</a></li>
+            <li><a href="#" class="text-sm text-white/70 hover:text-white transition-colors">Términos y condiciones</a></li>
+            <li><a href="#" class="text-sm text-white/70 hover:text-white transition-colors">Política de Cookies</a></li>
+            <li><a href="#" class="text-sm text-white/70 hover:text-white transition-colors">Términos de contratación</a></li>
+            <li><a href="#" class="text-sm text-white/70 hover:text-white transition-colors">Libro de reclamaciones</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h5 class="text-sm font-bold mb-4 text-white">Contacto</h5>
+          <ul class="space-y-3">
+            <li><a href="tel:+51946356118" class="text-sm text-white/70 hover:text-white transition-colors">+51 946 356 118</a></li>
+            <li><a href="mailto:hola@monkiestudio.com" class="text-sm text-white/70 hover:text-white transition-colors">hola@monkiestudio.com</a></li>
+            <li class="text-sm text-white/70">Av. Principal 1234, Lima</li>
+          </ul>
+        </div>
+
+        <div>
+          <h5 class="text-sm font-bold mb-4 text-white">Redes Sociales</h5>
+          <div class="flex gap-3">
+            <a href="#" class="w-10 h-10 rounded-xl bg-secundario-600 flex items-center justify-center text-white hover:bg-secundario-700 transition-all" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+            <a href="#" class="w-10 h-10 rounded-xl bg-secundario-600 flex items-center justify-center text-white hover:bg-secundario-700 transition-all" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="w-10 h-10 rounded-xl bg-secundario-600 flex items-center justify-center text-white hover:bg-secundario-700 transition-all" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="w-10 h-10 rounded-xl bg-secundario-600 flex items-center justify-center text-white hover:bg-secundario-700 transition-all" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+          </div>
+          
+        </div>
       </div>
-      <div class="footer__col">
-        <h5>Navegación</h5>
-        <a href="#hero">Inicio</a>
-        <a href="#servicios">Servicios</a>
-        <a href="#testimonios">Testimonios</a>
-        <a href="#contacto">Contacto</a>
+
+      <div class="border-t border-primario-800 mt-10 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-white/50">
+        <span>MonkieStudio © 2026. Todos los derechos reservados.</span>
       </div>
-      <div class="footer__col">
-        <h5>Contacto</h5>
-        <p>&#128205; Lima, Perú</p>
-        <p>&#9993; hola@monkiestudio.com</p>
-        <p>&#9742; +51 999 999 999</p>
-      </div>
-    </div>
-    <div class="footer__bottom">
-      <span>&copy; 2026 MonkieStudio. Todos los derechos reservados.</span>
     </div>
   </footer>
 
-  <div class="toast" id="toast"></div>
+  <!-- ===== FLOATING BUTTONS ===== -->
+  <a href="https://wa.me/51946356118" target="_blank" rel="noopener noreferrer" class="fixed bottom-6 right-6 z-40 w-14 h-14 rounded-full bg-green-500 text-white flex items-center justify-center shadow-lg hover:bg-green-600 hover:scale-110 transition-all" aria-label="WhatsApp">
+    <i class="bi bi-whatsapp text-2xl"></i>
+  </a>
+
+  <a href="#agenda" class="fixed bottom-24 right-6 z-40 h-12 px-5 rounded-full bg-secundario-600 text-white text-sm font-semibold flex items-center gap-2 shadow-lg hover:bg-secundario-700 hover:-translate-y-0.5 transition-all">
+    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2Z"/></svg>
+    Agendar cita
+  </a>
+
+  <!-- ===== TOAST ===== -->
+  <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-primario-950 text-white px-5 py-3 rounded-xl text-sm font-medium opacity-0 pointer-events-none transition-opacity duration-300 z-[9999] shadow-lg"></div>
+
+  <!-- ===== COOKIES BANNER ===== -->
+  <div id="cookiesBanner" class="fixed bottom-0 left-0 right-0 z-50 bg-primario-950 text-white p-6 shadow-lg">
+    <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-start sm:items-center gap-4">
+      <p class="text-sm text-primario-200 flex-1">
+        Usamos cookies en nuestro sitio web para brindarte la mejor experiencia. Al hacer clic en "Aceptar", aceptas el uso de todas las cookies.
+        <a href="#" class="text-primario-400 underline ml-1">Leer más</a>
+      </p>
+      <div class="flex gap-3 flex-shrink-0">
+        <button id="cookiesAccept" class="h-10 px-5 rounded-lg bg-secundario-600 text-white text-sm font-semibold hover:bg-secundario-500 transition-all">Aceptar</button>
+      </div>
+    </div>
+  </div>
 
   <script src="js/landing.js"></script>
 </body>
