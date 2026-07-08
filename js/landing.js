@@ -130,27 +130,27 @@ document.addEventListener('DOMContentLoaded', () => {
       inputs.forEach(input => {
         const helper = input.closest('.form-group').querySelector('.helper');
         if (!input.value.trim()) {
-          input.classList.add('border-red-500');
-          input.classList.remove('border-gray-300');
+          input.classList.add('border-coral');
+          input.classList.remove('border-stone');
           if (helper) {
             helper.textContent = input.tagName === 'SELECT' ? 'Selecciona una opción' : 'Este campo es obligatorio';
-            helper.className = 'helper text-xs mt-1 text-red-500';
+            helper.className = 'helper text-xs mt-1 text-coral';
           }
           isValid = false;
         } else if (input.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value)) {
-          input.classList.add('border-red-500');
-          input.classList.remove('border-gray-300');
+          input.classList.add('border-coral');
+          input.classList.remove('border-stone');
           if (helper) {
             helper.textContent = 'Ingresa un correo válido';
-            helper.className = 'helper text-xs mt-1 text-red-500';
+            helper.className = 'helper text-xs mt-1 text-coral';
           }
           isValid = false;
         } else {
-          input.classList.remove('border-red-500');
-          input.classList.add('border-gray-300');
+          input.classList.remove('border-coral');
+          input.classList.add('border-stone');
           if (helper) {
             helper.textContent = '';
-            helper.className = 'helper text-xs mt-1 text-primario-700/70';
+            helper.className = 'helper text-xs mt-1 text-black/70';
           }
         }
       });
@@ -164,7 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
           toast.classList.remove('opacity-100');
           toast.classList.add('opacity-0', 'pointer-events-none');
           inputs.forEach(input => {
-            input.classList.remove('border-red-500');
+            input.classList.remove('border-coral');
             input.value = '';
           });
         }, 3000);
