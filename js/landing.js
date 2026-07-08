@@ -148,26 +148,36 @@ document.addEventListener('DOMContentLoaded', () => {
       const inputs = form.querySelectorAll('input[required], select[required]');
 
       inputs.forEach(input => {
-        const helper = input.closest('.form-group').querySelector('.helper');
-        if (!input.value.trim()) {
-          input.classList.add('border-coral');
-          input.classList.remove('border-stone');
-          if (helper) {
-            helper.textContent = input.tagName === 'SELECT' ? 'Selecciona una opción' : 'Este campo es obligatorio';
-            helper.className = 'helper text-xs mt-1 text-coral';
-          }
-          isValid = false;
+        const group = input.closest('.form-group');
+        const helper = group ? group.querySelector('.helper') : null;
+        let invalid = false;
+
+        if (input.type === 'checkbox') {
+          invalid = !input.checked;
+        } else if (!input.value.trim()) {
+          invalid = true;
         } else if (input.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value)) {
-          input.classList.add('border-coral');
-          input.classList.remove('border-stone');
+          invalid = true;
+        }
+
+        if (invalid) {
+          if (input.type !== 'checkbox') {
+            input.classList.add('border-coral');
+            input.classList.remove('border-stone');
+          }
           if (helper) {
-            helper.textContent = 'Ingresa un correo válido';
+            helper.textContent = input.type === 'checkbox' ? 'Debes aceptar la política de privacidad' :
+                                 input.tagName === 'SELECT' ? 'Selecciona una opción' :
+                                 input.type === 'email' ? 'Ingresa un correo válido' :
+                                 'Este campo es obligatorio';
             helper.className = 'helper text-xs mt-1 text-coral';
           }
           isValid = false;
         } else {
-          input.classList.remove('border-coral');
-          input.classList.add('border-stone');
+          if (input.type !== 'checkbox') {
+            input.classList.remove('border-coral');
+            input.classList.add('border-stone');
+          }
           if (helper) {
             helper.textContent = '';
             helper.className = 'helper text-xs mt-1 text-black/70';
@@ -176,25 +186,59 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       if (isValid) {
-        const toast = document.getElementById('toast');
-        toast.textContent = '\u2713 Gracias. Te contactaremos pronto.';
-        toast.classList.remove('opacity-0', 'pointer-events-none');
-        toast.classList.add('opacity-100');
+        const btn = form.querySelector('button[type="submit"]');
+        const originalText = btn.textContent;
+        btn.disabled = true;
+        btn.innerHTML = '<span class="inline-block w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></span> Enviando...';
+
         setTimeout(() => {
-          toast.classList.remove('opacity-100');
-          toast.classList.add('opacity-0', 'pointer-events-none');
-          inputs.forEach(input => {
-            input.classList.remove('border-coral');
-            input.value = '';
-          });
-        }, 3000);
-        form.reset();
+          btn.disabled = false;
+          btn.textContent = originalText;
+          const toast = document.getElementById('toast');
+          toast.textContent = '\u2713 Gracias. Te contactaremos pronto.';
+          toast.classList.remove('opacity-0', 'pointer-events-none');
+          toast.classList.add('opacity-100');
+          setTimeout(() => {
+            toast.classList.remove('opacity-100');
+            toast.classList.add('opacity-0', 'pointer-events-none');
+            inputs.forEach(input => {
+              input.classList.remove('border-coral');
+              input.value = '';
+            });
+            form.reset();
+          }, 3000);
+        }, 2000);
       }
     });
   }
 
-  setupForm('formConsultoria');
-  setupForm('formCotizar');
+  setupForm('formContacto');
+
+  // ===== PRIVACY MODAL =====
+  const privacyLink = document.getElementById('privacyLink');
+  const privacyModal = document.getElementById('privacyModal');
+  const privacyClose = document.getElementById('privacyClose');
+  const privacyAccept = document.getElementById('privacyAccept');
+
+  if (privacyLink && privacyModal) {
+    function openModal(e) {
+      e.preventDefault();
+      privacyModal.classList.remove('hidden');
+      privacyModal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeModal() {
+      privacyModal.classList.add('hidden');
+      privacyModal.classList.remove('flex');
+      document.body.style.overflow = '';
+    }
+    privacyLink.addEventListener('click', openModal);
+    if (privacyClose) privacyClose.addEventListener('click', closeModal);
+    if (privacyAccept) privacyAccept.addEventListener('click', closeModal);
+    privacyModal.addEventListener('click', e => {
+      if (e.target === privacyModal) closeModal();
+    });
+  }
 
   // ===== SMOOTH SCROLL =====
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -207,20 +251,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // ===== COOKIES BANNER =====
-  const cookiesBanner = document.getElementById('cookiesBanner');
-  const cookiesAccept = document.getElementById('cookiesAccept');
-
-  if (cookiesBanner && cookiesAccept) {
-    if (localStorage.getItem('cookiesAccepted')) {
-      cookiesBanner.style.display = 'none';
-    } else {
-      cookiesBanner.style.display = 'block';
-    }
-
-    cookiesAccept.addEventListener('click', () => {
-      localStorage.setItem('cookiesAccepted', 'true');
-      cookiesBanner.style.display = 'none';
-    });
-  }
 });
