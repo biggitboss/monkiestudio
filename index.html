@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/jpeg" href="images/favicon.jpg">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -32,23 +33,23 @@
   <a href="#main" class="skip-link">Ir al contenido principal</a>
 
   <!-- ===== HEADER ===== -->
-  <header class="header fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-stone transition-shadow duration-300" role="banner">
+  <header class="header fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-stone transition-all duration-300" role="banner">
     <div class="max-w-7xl mx-auto px-6 h-[72px] flex items-center justify-between">
       <a href="#" class="flex items-center flex-shrink-0" aria-label="MonkieStudio inicio">
-        <img src="images/logo.svg" alt="MonkieStudio" class="h-8 w-auto">
+        <img src="images/logo.svg" alt="MonkieStudio" class="header-logo h-8 w-auto">
       </a>
 
       <nav class="hidden lg:flex items-center gap-8" role="navigation" aria-label="Navegación principal">
-        <a href="#inicio" class="text-xs font-medium text-black/70 hover:text-coral transition-colors uppercase">Inicio</a>
-        <a href="#nosotros" class="text-xs font-medium text-black/70 hover:text-coral transition-colors uppercase">Nosotros</a>
-        <a href="#servicios" class="text-xs font-medium text-black/70 hover:text-coral transition-colors uppercase">Servicios</a>
-        <a href="#clientes" class="text-xs font-medium text-black/70 hover:text-coral transition-colors uppercase">Clientes</a>
-        <a href="#contacto" class="text-xs font-medium text-black/70 hover:text-coral transition-colors uppercase">Contacto</a>
+        <a href="#inicio" class="nav-link text-xs font-medium text-black/70 hover:text-coral transition-colors uppercase">Inicio</a>
+        <a href="#nosotros" class="nav-link text-xs font-medium text-black/70 hover:text-coral transition-colors uppercase">Nosotros</a>
+        <a href="#servicios" class="nav-link text-xs font-medium text-black/70 hover:text-coral transition-colors uppercase">Servicios</a>
+        <a href="#clientes" class="nav-link text-xs font-medium text-black/70 hover:text-coral transition-colors uppercase">Clientes</a>
+        <a href="#contacto" class="nav-link text-xs font-medium text-black/70 hover:text-coral transition-colors uppercase">Contacto</a>
       </nav>
 
       <div class="flex items-center gap-4">
         <a href="#contacto" class="hidden sm:inline-flex items-center justify-center h-10 px-5 rounded-xl bg-coral text-white text-sm font-semibold hover:brightness-90 transition-all">Solicitar Cotización</a>
-        <button id="hamburger" class="lg:hidden w-11 h-11 border-none bg-none cursor-pointer p-2 flex flex-col items-center justify-center gap-[5px] text-black" aria-label="Abrir menú de navegación">
+        <button id="hamburger" class="hamburger lg:hidden w-11 h-11 border-none bg-none cursor-pointer p-2 flex flex-col items-center justify-center gap-[5px] text-black" aria-label="Abrir menú de navegación">
           <span class="hamburger__bar"></span>
           <span class="hamburger__bar"></span>
           <span class="hamburger__bar"></span>
@@ -59,11 +60,11 @@
 
   <!-- ===== MOBILE NAV OVERLAY ===== -->
   <div id="navOverlay" class="hidden fixed inset-0 z-40 flex-col items-center justify-center gap-8 bg-white" role="dialog" aria-modal="true" aria-label="Menú de navegación">
-    <a href="#inicio" class="text-xl font-semibold text-black uppercase">Inicio</a>
-    <a href="#nosotros" class="text-xl font-semibold text-black uppercase">Nosotros</a>
-    <a href="#servicios" class="text-xl font-semibold text-black uppercase">Servicios</a>
-    <a href="#clientes" class="text-xl font-semibold text-black uppercase">Clientes</a>
-    <a href="#contacto" class="text-xl font-semibold text-black uppercase">Contacto</a>
+    <a href="#inicio" class="mobile-nav-link text-xl font-semibold text-black hover:text-coral transition-colors uppercase">Inicio</a>
+    <a href="#nosotros" class="mobile-nav-link text-xl font-semibold text-black hover:text-coral transition-colors uppercase">Nosotros</a>
+    <a href="#servicios" class="mobile-nav-link text-xl font-semibold text-black hover:text-coral transition-colors uppercase">Servicios</a>
+    <a href="#clientes" class="mobile-nav-link text-xl font-semibold text-black hover:text-coral transition-colors uppercase">Clientes</a>
+    <a href="#contacto" class="mobile-nav-link text-xl font-semibold text-black hover:text-coral transition-colors uppercase">Contacto</a>
   </div>
 
   <main id="main">
@@ -72,7 +73,7 @@
     <section id="inicio" class="hero-slider relative min-h-screen pt-[72px] overflow-hidden">
       <div class="hero-slides relative w-full h-full">
         <div class="hero-slide active" data-index="0">
-          <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1920&q=80');"></div>
+          <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('/images/slider-1.jpg');"></div>
           <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40"></div>
           <div class="relative z-10 h-full flex items-center">
             <div class="max-w-7xl mx-auto px-6 w-full py-20">
@@ -90,7 +91,7 @@
         </div>
 
         <div class="hero-slide" data-index="1">
-          <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1920&q=80');"></div>
+          <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('/images/slider-2.jpg');"></div>
           <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40"></div>
           <div class="relative z-10 h-full flex items-center">
             <div class="max-w-7xl mx-auto px-6 w-full py-20">
@@ -121,11 +122,11 @@
     <section class="py-12 bg-black relative z-10">
       <div class="max-w-5xl mx-auto px-6 grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
         <div>
-          <div class="text-4xl lg:text-5xl font-bold text-white">120+</div>
+          <div class="text-4xl lg:text-5xl font-bold text-white">28+</div>
           <p class="text-sm text-white/70 mt-2 font-medium">Proyectos ejecutados</p>
         </div>
         <div>
-          <div class="text-4xl lg:text-5xl font-bold text-white">45+</div>
+          <div class="text-4xl lg:text-5xl font-bold text-white">12+</div>
           <p class="text-sm text-white/70 mt-2 font-medium">Clientes activos</p>
         </div>
         <div>
@@ -140,9 +141,10 @@
     </section>
 
     <!-- ===== NOSOTROS ===== -->
-    <section id="nosotros" class="py-20 lg:py-28 bg-white">
+    <section id="nosotros" class="py-20 lg:py-18 bg-white">
       <div class="max-w-7xl mx-auto px-6">
         <div class="text-center max-w-4xl mx-auto fade-up">
+          <img src="/images/cabeza.svg" alt="" width="150px" class="mx-auto mb-5">
           <h2 class="text-3xl lg:text-4xl font-bold text-black">Conoce MonkieStudio</h2>
           <p class="mt-4 text-black/70 leading-relaxed">
             En MonkieStudio creemos que una marca sólida nace de la combinación entre creatividad, estrategia y tecnología. Desde nuestra fundación en 2021 acompañamos a empresas de distintos sectores en el desarrollo de soluciones digitales que fortalecen su presencia en el mercado y generan oportunidades de crecimiento.
@@ -555,8 +557,18 @@
           <div class="flex flex-col justify-center">
             <div class="space-y-8">
               <div>
-                <h4 class="text-sm font-bold text-black uppercase tracking-wider">MonkieStudio</h4>
-                <p class="mt-2 text-black/70">Lima - Perú</p>
+                <h4 class="text-md font-bold text-black uppercase tracking-wider">¿Tienes un proyecto en mente?</h4>
+                <p class="mt-2 text-base text-black/70 leading-relaxed"> Cuéntanos tu idea y te ayudaremos a convertirla en una estrategia digital que impulse tu marca.</p>
+              </div>
+
+              <div class="flex items-start gap-4">
+                <div class="w-10 h-10 rounded-xl bg-coral flex items-center justify-center flex-shrink-0">
+                  <i class="bi bi-geo-alt text-white"></i>
+                </div>
+                <div>
+                  <p class="text-sm font-semibold text-black">Dirección</p>
+                  <p class="text-sm text-black/70">Av. Reducto 1329, 3er Piso Miraflores, Lima - Perú</p>
+                </div>
               </div>
 
               <div class="flex items-start gap-4">
@@ -603,7 +615,7 @@
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
         <div>
           <img src="images/logo.svg" alt="MonkieStudio" class="h-10 w-auto mb-4 brightness-0 invert">
-          <p class="text-sm text-white/60 leading-relaxed">Creatividad que conecta. Estrategias que transforman.</p>
+          <p class="text-sm text-white/60 leading-relaxed">Somos una agencia peruana de marketing digital y desarrollo. Ayudamos a empresas a construir marcas sólidas mediante estrategias innovadoras que generan resultados reales.</p>
         </div>
 
         <div>

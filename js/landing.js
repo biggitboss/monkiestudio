@@ -66,10 +66,30 @@ document.addEventListener('DOMContentLoaded', () => {
     startAutoplay();
   })();
 
-  // ===== HEADER SCROLL SHADOW =====
+  // ===== HEADER SCROLL =====
   const header = document.querySelector('.header');
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
+
+  function updateActiveSection() {
+    let current = 'inicio';
+    const scrollY = window.scrollY + 150;
+    sections.forEach(s => {
+      if (s.offsetTop <= scrollY) {
+        current = s.getAttribute('id');
+      }
+    });
+    navLinks.forEach(link => {
+      const target = link.getAttribute('href').slice(1);
+      link.classList.toggle('active', target === current);
+    });
+  }
+
   function updateHeaderScroll() {
-    header.classList.toggle('shadow-md', window.scrollY > 50);
+    const scrolled = window.scrollY > 50;
+    header.classList.toggle('header--scrolled', scrolled);
+    header.classList.toggle('shadow-md', scrolled);
+    updateActiveSection();
   }
   window.addEventListener('scroll', updateHeaderScroll, { passive: true });
   updateHeaderScroll();
